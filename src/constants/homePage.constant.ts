@@ -1,7 +1,14 @@
-import { BsPiggyBank, BsClipboardCheck, BsGraphUp } from 'react-icons/bs';
+import {
+    BsPiggyBank,
+    BsClipboardCheck,
+    BsGraphUp,
+    BsPersonPlus,
+    BsSearch,
+    BsTrophy,
+} from 'react-icons/bs';
 import { SlCalender } from 'react-icons/sl';
 
-const featuresInfo = [
+export const featuresInfo = [
     {
         icon: SlCalender,
         title: 'Smart Scheduling',
@@ -28,4 +35,24 @@ const featuresInfo = [
     },
 ];
 
-export default featuresInfo;
+const stepsData = [
+    {
+        icon: BsPersonPlus,
+        title: 'Sign Up',
+        description: 'Create your free account in minutes.',
+    },
+    {
+        icon: BsSearch,
+        title: 'Explore Features',
+        description:
+            'Discover the wide range of tools and resources available to you.',
+    },
+    {
+        icon: BsTrophy,
+        title: 'Achieve Your Goals',
+        description:
+            'Utilize StudyPilot to enhance your academic performance and achieve your full potential.',
+    },
+];
+
+export default stepsData;
