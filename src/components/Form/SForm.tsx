@@ -60,7 +60,7 @@ const SFrom = ({
         <FormProvider {...methods}>
             <form
                 onSubmit={methods.handleSubmit(onSubmit)}
-                className={cn('space-y-4', className)}
+                className={cn('space-y-3', className)}
             >
                 {children}
             </form>

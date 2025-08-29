@@ -24,7 +24,7 @@ const Hero = () => {
                         </NormalText>
                     </div>
                     <div className="flex-wrap gap-3 flex">
-                        <Link to="/exam">
+                        <Link to="/quiz">
                             <Button size="sm">Start AI Quiz Test</Button>
                         </Link>
                         <Link to="/study">

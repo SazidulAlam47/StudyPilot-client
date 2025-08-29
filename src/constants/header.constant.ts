@@ -12,7 +12,7 @@ export const headerLinks = [
         title: 'Budget Manager',
     },
     {
-        path: '/exam',
+        path: '/quiz',
         title: 'AI Quiz',
     },
     {
