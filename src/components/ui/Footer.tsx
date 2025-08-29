@@ -46,7 +46,7 @@ const Footer = () => {
                 </Container>
                 <hr className="text-gray-300" />
                 <FooterCopyright
-                    by="StudyPilot"
+                    by="StudyPilot. All rights reserved."
                     year={new Date().getFullYear()}
                     className="text-gray-600 py-2 md:py-3"
                 />

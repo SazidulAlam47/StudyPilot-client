@@ -1,7 +1,7 @@
 import Step from './Step';
 import howItWorksImage from '../../../../assets/how-it-works.png';
 import Container from '../../../../components/Container';
-import stepsData from '../../../../constants/homePage.constant';
+import { stepsData } from '../../../../constants/homePage.constant';
 import SectionTitle from '../../../../components/SectionTitle';
 import NormalText from '../../../../components/NormalText';
 

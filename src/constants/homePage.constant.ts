@@ -35,7 +35,7 @@ export const featuresInfo = [
     },
 ];
 
-const stepsData = [
+export const stepsData = [
     {
         icon: BsPersonPlus,
         title: 'Sign Up',
@@ -55,4 +55,17 @@ const stepsData = [
     },
 ];
 
-export default stepsData;
+export const statsData = [
+    {
+        title: 'Active Students',
+        value: '1,200+',
+    },
+    {
+        title: 'Study Plans Created',
+        value: '850+',
+    },
+    {
+        title: 'Exams Generated',
+        value: '2,400+',
+    },
+];

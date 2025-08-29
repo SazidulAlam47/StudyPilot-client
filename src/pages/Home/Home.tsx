@@ -1,6 +1,7 @@
 import Features from './sections/Features/Features';
 import Hero from './sections/Hero/Hero';
 import HowItWorks from './sections/HowItWorks/HowItWorks';
+import StatsSection from './sections/Stats/Stats';
 
 const Home = () => {
     return (
@@ -8,6 +9,7 @@ const Home = () => {
             <Hero />
             <Features />
             <HowItWorks />
+            <StatsSection />
         </>
     );
 };
