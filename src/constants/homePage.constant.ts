@@ -23,9 +23,9 @@ export const featuresInfo = [
     },
     {
         icon: BsClipboardCheck,
-        title: 'Exam Generator',
+        title: 'AI Quiz Generator',
         description:
-            'Generate practice questions and mock exams to test your knowledge and prepare effectively.',
+            'AI generated practice questions and exams based on your topic for effective preparation.',
     },
     {
         icon: BsGraphUp,

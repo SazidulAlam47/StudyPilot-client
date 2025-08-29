@@ -30,13 +30,15 @@ const Footer = () => {
                                 About
                             </FooterLink>
                             <FooterLink
-                                href="#"
+                                href="http://github.com/sazidulAlam47/StudyPilot-client"
+                                target="_blank"
                                 className="text-gray-700 hover:text-gray-900 transition-colors"
                             >
                                 Frontend Code
                             </FooterLink>
                             <FooterLink
-                                href="#"
+                                href="http://github.com/sazidulAlam47/StudyPilot-server"
+                                target="_blank"
                                 className="text-gray-700 hover:text-gray-900 transition-colors"
                             >
                                 Backend Code

@@ -1,4 +1,5 @@
 import {
+    Button,
     Navbar,
     NavbarBrand,
     NavbarCollapse,
@@ -8,7 +9,7 @@ import {
 import Container from '../Container';
 import logo from '../../assets/logo.png';
 import { Link, useLocation } from 'react-router';
-import SButton from '../SButton';
+import { headerLinks } from '../../constants/header.constant';
 
 const Header = () => {
     const location = useLocation();
@@ -27,33 +28,22 @@ const Header = () => {
                     </Link>
                     <div className="flex md:order-2 gap-2 items-center">
                         <Link to="/login">
-                            <SButton size="small">Login</SButton>
-                        </Link>
-                        <Link to="/register">
-                            <SButton size="small" variant="secondary">
-                                Register
-                            </SButton>
+                            <Button size="xs">Login</Button>
                         </Link>
                         <NavbarToggle />
                     </div>
                     <NavbarCollapse>
-                        <Link to="/">
-                            <NavbarLink active={location.pathname === '/'}>
-                                Home
-                            </NavbarLink>
-                        </Link>
-                        <Link to="/dashboard/schedule">
-                            <NavbarLink>My Schedule</NavbarLink>
-                        </Link>
-                        <Link to="/dashboard/budget">
-                            <NavbarLink>Budget Manager</NavbarLink>
-                        </Link>
-                        <Link to="/dashboard/exam">
-                            <NavbarLink>Exam Generator</NavbarLink>
-                        </Link>
-                        <Link to="/dashboard/study">
-                            <NavbarLink>Study Planner</NavbarLink>
-                        </Link>
+                        {headerLinks.map((headerLink, index) => (
+                            <Link key={index} to={headerLink.path}>
+                                <NavbarLink
+                                    active={
+                                        location.pathname === headerLink.path
+                                    }
+                                >
+                                    {headerLink.title}
+                                </NavbarLink>
+                            </Link>
+                        ))}
                     </NavbarCollapse>
                 </Navbar>
             </Container>

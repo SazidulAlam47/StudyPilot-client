@@ -1,9 +1,9 @@
 import Container from '../../../../components/Container';
 import heroImage from '../../../../assets/hero.png';
-import SButton from '../../../../components/SButton';
 import { Link } from 'react-router';
 import SectionTitle from '../../../../components/SectionTitle';
 import NormalText from '../../../../components/NormalText';
+import { Button } from 'flowbite-react';
 
 const Hero = () => {
     return (
@@ -24,13 +24,13 @@ const Hero = () => {
                         </NormalText>
                     </div>
                     <div className="flex-wrap gap-3 flex">
-                        <Link to="/dashboard/exam">
-                            <SButton>Generate Practice Exam</SButton>
+                        <Link to="/exam">
+                            <Button size="sm">Start AI Quiz Test</Button>
                         </Link>
-                        <Link to="/dashboard/study">
-                            <SButton variant="secondary">
+                        <Link to="/study">
+                            <Button size="sm" color="secondary">
                                 Create Study Plan
-                            </SButton>
+                            </Button>
                         </Link>
                     </div>
                 </div>
