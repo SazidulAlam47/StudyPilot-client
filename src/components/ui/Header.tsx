@@ -15,17 +15,17 @@ const Header = () => {
     return (
         <>
             <Container asChild>
-                <Navbar className="border0 py-4">
+                <Navbar className="border0 py-4 ">
                     <Link to="/">
                         <NavbarBrand>
                             <img
                                 src={logo}
-                                className="mr-3 h-6 sm:h-9"
+                                className="mr-3 h-10"
                                 alt="Flowbite React Logo"
                             />
                         </NavbarBrand>
                     </Link>
-                    <div className="flex md:order-2 gap-2">
+                    <div className="flex md:order-2 gap-2 items-center">
                         <Link to="/login">
                             <SButton size="small">Login</SButton>
                         </Link>

@@ -14,15 +14,15 @@ const Footer = () => {
         <FlowbiteFooter>
             <div className="w-full text-center bg-gray-100">
                 <Container asChild>
-                    <div className="w-full my-3 justify-between sm:flex sm:items-center sm:justify-between">
+                    <div className="w-full py-4 flex flex-col items-center gap-3 md:flex-row md:justify-between">
                         <Link to="/">
                             <FooterBrand
                                 src={logo}
                                 alt="StudyPilot Logo"
-                                className="size-10"
+                                className="size-20 md:size-12"
                             />
                         </Link>
-                        <FooterLinkGroup>
+                        <FooterLinkGroup className="">
                             <FooterLink
                                 href="#"
                                 className="text-gray-700 hover:text-gray-900 transition-colors"
@@ -48,7 +48,7 @@ const Footer = () => {
                 <FooterCopyright
                     by="StudyPilot"
                     year={new Date().getFullYear()}
-                    className="text-gray-600 my-2"
+                    className="text-gray-600 py-2 md:py-3"
                 />
             </div>
         </FlowbiteFooter>
