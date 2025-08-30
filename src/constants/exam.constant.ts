@@ -12,3 +12,10 @@ export const questionsNumbersOptions = questionsNumbers.map(
         label: questionNumber.toString(),
     })
 );
+
+export const startExamDefaultValues = {
+    topic: '',
+    difficulty: 'easy',
+    numQuestions: 10,
+    language: 'english',
+};

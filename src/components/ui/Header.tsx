@@ -3,7 +3,6 @@ import {
     Navbar,
     NavbarBrand,
     NavbarCollapse,
-    NavbarLink,
     NavbarToggle,
 } from 'flowbite-react';
 import Container from '../Container';
@@ -14,6 +13,7 @@ import { getUser, userLogout } from '../../utils/user';
 import NormalText from '../NormalText';
 import { toast } from 'sonner';
 import { useState } from 'react';
+import { cn } from '../../utils/cn';
 
 const Header = () => {
     const [, forceUpdate] = useState({});
@@ -70,14 +70,19 @@ const Header = () => {
                     </div>
                     <NavbarCollapse>
                         {headerLinks.map((headerLink, index) => (
-                            <Link key={index} to={headerLink.path}>
-                                <NavbarLink
-                                    active={
-                                        location.pathname === headerLink.path
+                            <Link
+                                key={index}
+                                to={headerLink.path}
+                                className={cn(
+                                    'block py-2 pl-3 pr-4 md:p-0 hover:text-primary-700 transition-all',
+                                    {
+                                        'text-primary-700':
+                                            location.pathname ===
+                                            headerLink.path,
                                     }
-                                >
-                                    {headerLink.title}
-                                </NavbarLink>
+                                )}
+                            >
+                                {headerLink.title}
                             </Link>
                         ))}
                     </NavbarCollapse>

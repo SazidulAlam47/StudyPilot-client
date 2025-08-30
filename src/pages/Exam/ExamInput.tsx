@@ -6,9 +6,12 @@ import {
     difficultiesOptions,
     languagesOptions,
     questionsNumbersOptions,
+    startExamDefaultValues,
 } from '../../constants/exam.constant';
 import type { FieldValues } from 'react-hook-form';
 import SectionHeading from '../../components/SectionHeading';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { startExamSchema } from '../../schemas/exam.schema';
 
 const ExamInput = () => {
     const handleExamStart = (data: FieldValues) => {
@@ -22,7 +25,11 @@ const ExamInput = () => {
                     subTitle="Input your topic, difficulty, and language to create a personalized quiz that tests your knowledge effectively."
                     size="small"
                 />
-                <SFrom onSubmit={handleExamStart}>
+                <SFrom
+                    onSubmit={handleExamStart}
+                    resolver={zodResolver(startExamSchema)}
+                    defaultValues={startExamDefaultValues}
+                >
                     <SInput
                         name="topic"
                         label="Quiz Topic"
