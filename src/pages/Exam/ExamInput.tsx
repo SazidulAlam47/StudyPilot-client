@@ -45,7 +45,6 @@ const ExamInput = () => {
                             name="numQuestions"
                             label="Number of Questions"
                             options={questionsNumbersOptions}
-                            defaultValue={10}
                         />
                     </div>
                     <SSelect

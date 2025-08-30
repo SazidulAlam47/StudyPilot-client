@@ -1,10 +1,4 @@
-import {
-    Button,
-    Navbar,
-    NavbarBrand,
-    NavbarCollapse,
-    NavbarToggle,
-} from 'flowbite-react';
+import { Button, Navbar, NavbarCollapse, NavbarToggle } from 'flowbite-react';
 import Container from '../Container';
 import logo from '../../assets/logo.png';
 import { Link, useLocation } from 'react-router';
@@ -38,13 +32,11 @@ const Header = () => {
             <Container asChild>
                 <Navbar className="border0 py-4 ">
                     <Link to="/">
-                        <NavbarBrand>
-                            <img
-                                src={logo}
-                                className="mr-3 h-10"
-                                alt="Flowbite React Logo"
-                            />
-                        </NavbarBrand>
+                        <img
+                            src={logo}
+                            className="mr-3 h-10"
+                            alt="Flowbite React Logo"
+                        />
                     </Link>
                     <div className="flex md:order-2 gap-2 items-center">
                         {user ? (

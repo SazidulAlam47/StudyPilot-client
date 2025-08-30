@@ -8,7 +8,6 @@ type USelectProps = {
     disabled?: boolean;
     className?: string;
     options: { value: string | number; label: string }[];
-    defaultValue?: string | number;
 };
 
 const SSelect = ({
@@ -17,7 +16,6 @@ const SSelect = ({
     disabled = false,
     className,
     options,
-    defaultValue,
 }: USelectProps) => {
     return (
         <Controller
@@ -32,7 +30,6 @@ const SSelect = ({
                         id={name}
                         disabled={disabled}
                         color={error ? 'failure' : 'gray'}
-                        defaultValue={defaultValue || undefined}
                     >
                         {options.map((option, index) => (
                             <option key={index} value={option.value}>

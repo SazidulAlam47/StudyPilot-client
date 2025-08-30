@@ -1,6 +1,5 @@
 import {
     Footer as FlowbiteFooter,
-    FooterBrand,
     FooterCopyright,
     FooterLink,
     FooterLinkGroup,
@@ -16,7 +15,7 @@ const Footer = () => {
                 <Container asChild>
                     <div className="w-full py-4 flex flex-col items-center gap-3 md:flex-row md:justify-between">
                         <Link to="/">
-                            <FooterBrand
+                            <img
                                 src={logo}
                                 alt="StudyPilot Logo"
                                 className="size-20 md:size-12"
