@@ -1,9 +1,10 @@
 import Container from '../../components/Container';
+import ExamInput from './ExamInput';
 
 const Exam = () => {
     return (
         <Container>
-            <p>This is Exam</p>
+            <ExamInput />
         </Container>
     );
 };

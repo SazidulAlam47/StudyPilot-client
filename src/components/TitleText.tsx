@@ -6,7 +6,7 @@ type SectionTitleProps = {
     children: ReactNode;
 };
 
-const SectionTitle = ({ className, children }: SectionTitleProps) => {
+const TitleText = ({ className, children }: SectionTitleProps) => {
     return (
         <h2
             className={cn(
@@ -19,4 +19,4 @@ const SectionTitle = ({ className, children }: SectionTitleProps) => {
     );
 };
 
-export default SectionTitle;
+export default TitleText;

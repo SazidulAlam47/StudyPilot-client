@@ -2,20 +2,17 @@ import Step from './Step';
 import howItWorksImage from '../../../../assets/how-it-works.png';
 import Container from '../../../../components/Container';
 import { stepsData } from '../../../../constants/homePage.constant';
-import SectionTitle from '../../../../components/SectionTitle';
-import NormalText from '../../../../components/NormalText';
+import SectionHeading from '../../../../components/SectionHeading';
 
 const HowItWorks = () => {
     return (
         <Container asChild>
             <div className="px-4 py-10">
-                <div className="flex flex-col gap-2">
-                    <SectionTitle>How It Works</SectionTitle>
-                    <NormalText className="max-w-[720px] mx-auto text-center">
-                        Get started with StudyPilot in just three simple steps
-                        and transform your academic journey today.
-                    </NormalText>
-                </div>
+                <SectionHeading
+                    title="How It Works"
+                    subTitle="Get started with StudyPilot in just three simple steps
+                        and transform your academic journey today."
+                />
                 <div className="flex flex-col lg:flex-row gap-12 items-center mt-10">
                     <div className="flex-1 max-w-xl">
                         {stepsData.map((step, index) => (
