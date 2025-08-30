@@ -24,7 +24,7 @@ const SInput = ({
             name={name}
             render={({ field, fieldState: { error } }) => (
                 <div className={className}>
-                    <div className="mb-2 block">
+                    <div className="mb-1 block">
                         <Label htmlFor={name} className="text-[#111418]">
                             {label}
                         </Label>

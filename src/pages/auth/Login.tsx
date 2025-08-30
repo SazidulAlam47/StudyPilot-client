@@ -1,26 +1,68 @@
 import { Button } from 'flowbite-react';
 import { googleLogin } from '../../firebase/firebase.action';
 import Container from '../../components/Container';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import googleLogo from '../../assets/google.svg';
 import SFrom from '../../components/form/SForm';
 import SInput from '../../components/form/SInput';
 import SInputPassword from '../../components/form/SInputPassword';
 import type { FieldValues } from 'react-hook-form';
+import {
+    useLoginWithEmailMutation,
+    useLoginWithGoogleMutation,
+} from '../../redux/api/auth.api';
+import { toast } from 'sonner';
+import { setToLocalStorage } from '../../utils/localStorage';
+import { authKey } from '../../constants/auth.constant';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginSchema } from '../../schemas/auth.schema';
 
 const Login = () => {
+    const navigate = useNavigate();
+    const [loginWithEmail] = useLoginWithEmailMutation();
+    const [loginWithGoogle] = useLoginWithGoogleMutation();
+
     const handleGoogleLogin = async () => {
         try {
             const userInfo = await googleLogin();
             const idToken = await userInfo.user.getIdToken();
-            console.log(idToken);
+
+            try {
+                const res = await loginWithGoogle({ idToken }).unwrap();
+
+                const token = res.accessToken;
+                if (token) {
+                    setToLocalStorage(authKey, token);
+                    navigate('/');
+                    toast.success('Login successful!');
+                }
+            } catch (error: any) {
+                toast.error(
+                    error.message || error.data || 'Something went wrong'
+                );
+            }
         } catch (error) {
             console.log(error);
         }
     };
 
-    const handleSubmit = (data: FieldValues) => {
-        console.log(data);
+    const handleEmailLogin = async (data: FieldValues) => {
+        const toastId = toast.loading('Logging in...');
+
+        try {
+            const res = await loginWithEmail(data).unwrap();
+
+            const token = res.accessToken;
+            if (token) {
+                setToLocalStorage(authKey, token);
+                navigate('/');
+                toast.success('Login successful!', { id: toastId });
+            }
+        } catch (error: any) {
+            toast.error(error.message || error.data || 'Something went wrong', {
+                id: toastId,
+            });
+        }
     };
 
     return (
@@ -34,7 +76,10 @@ const Login = () => {
                         Enter your email and password to sign in
                     </p>
                 </div>
-                <SFrom onSubmit={handleSubmit}>
+                <SFrom
+                    onSubmit={handleEmailLogin}
+                    resolver={zodResolver(loginSchema)}
+                >
                     <SInput
                         name="email"
                         label="Email"

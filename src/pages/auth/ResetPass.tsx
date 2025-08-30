@@ -3,10 +3,46 @@ import Container from '../../components/Container';
 import SFrom from '../../components/form/SForm';
 import SInput from '../../components/form/SInput';
 import type { FieldValues } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { resetPasswordSchema } from '../../schemas/auth.schema';
+import { useNavigate, useSearchParams } from 'react-router';
+import { useResetPasswordMutation } from '../../redux/api/auth.api';
+import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 const ResetPass = () => {
-    const handleSubmit = (data: FieldValues) => {
-        console.log(data);
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+
+    const [resetPassword] = useResetPasswordMutation();
+
+    const id = searchParams.get('id');
+    const token = searchParams.get('token');
+
+    useEffect(() => {
+        if (!id || !token) {
+            navigate('/login');
+        }
+    }, [id, token, navigate]);
+
+    const handleResetPass = async (data: FieldValues) => {
+        const toastId = toast.loading('Resetting password...');
+        try {
+            const resetPasswordData = {
+                token,
+                data: {
+                    id,
+                    password: data.password,
+                },
+            };
+            await resetPassword(resetPasswordData).unwrap();
+            toast.success('Password reset successfully!', { id: toastId });
+            navigate('/login');
+        } catch (error: any) {
+            toast.error(error.message || error.data || 'Something went wrong', {
+                id: toastId,
+            });
+        }
     };
 
     return (
@@ -17,7 +53,10 @@ const ResetPass = () => {
                         Reset Password
                     </h1>
                 </div>
-                <SFrom onSubmit={handleSubmit}>
+                <SFrom
+                    onSubmit={handleResetPass}
+                    resolver={zodResolver(resetPasswordSchema)}
+                >
                     <SInput
                         name="password"
                         type="password"

@@ -16,7 +16,7 @@ const SInputPassword = ({ disabled = false, className }: UInputProps) => {
             name="password"
             render={({ field, fieldState: { error } }) => (
                 <div className={className}>
-                    <div className="mb-2 block">
+                    <div className="mb-1 block">
                         <Label htmlFor="password1" className="text-[#111418]">
                             Password
                         </Label>
@@ -29,10 +29,11 @@ const SInputPassword = ({ disabled = false, className }: UInputProps) => {
                             type={showPassword ? 'text' : 'password'}
                             placeholder="Enter your password"
                             disabled={disabled}
+                            color={error ? 'failure' : 'gray'}
                         />
                         <button
                             type="button"
-                            className="absolute inset-y-0 right-0 flex items-center pr-3"
+                            className="absolute inset-y-0 right-0 flex items-center pr-3 cursor-pointer"
                             onClick={() => setShowPassword(!showPassword)}
                         >
                             {showPassword ? (

@@ -1,13 +1,33 @@
 import { Button } from 'flowbite-react';
 import Container from '../../components/Container';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import SFrom from '../../components/form/SForm';
 import SInput from '../../components/form/SInput';
 import type { FieldValues } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { forgotPasswordSchema } from '../../schemas/auth.schema';
+import { useForgotPasswordMutation } from '../../redux/api/auth.api';
+import { toast } from 'sonner';
 
 const ForgotPass = () => {
-    const handleSubmit = (data: FieldValues) => {
-        console.log(data);
+    const navigate = useNavigate();
+    const [forgotPassword] = useForgotPasswordMutation();
+
+    const handleForgetPass = async (data: FieldValues) => {
+        const toastId = toast.loading('Sending reset email...');
+
+        try {
+            await forgotPassword(data).unwrap();
+
+            toast.success('Password reset email sent successfully!', {
+                id: toastId,
+            });
+            navigate('/login');
+        } catch (error: any) {
+            toast.error(error.message || error.data || 'Something went wrong', {
+                id: toastId,
+            });
+        }
     };
 
     return (
@@ -21,11 +41,14 @@ const ForgotPass = () => {
                         Enter your email to reset you password
                     </p>
                 </div>
-                <SFrom onSubmit={handleSubmit}>
+                <SFrom
+                    onSubmit={handleForgetPass}
+                    resolver={zodResolver(forgotPasswordSchema)}
+                >
                     <SInput
-                        name="name"
-                        label="Name"
-                        placeholder="Enter your name"
+                        name="email"
+                        label="Email"
+                        placeholder="Enter your email"
                     />
                     <Button type="submit" className="w-full">
                         Send Reset Email

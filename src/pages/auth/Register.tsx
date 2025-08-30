@@ -1,14 +1,47 @@
 import { Button } from 'flowbite-react';
 import Container from '../../components/Container';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import SFrom from '../../components/form/SForm';
 import SInput from '../../components/form/SInput';
 import SInputPassword from '../../components/form/SInputPassword';
 import type { FieldValues } from 'react-hook-form';
+import {
+    useLoginWithEmailMutation,
+    useRegisterMutation,
+} from '../../redux/api/auth.api';
+import { toast } from 'sonner';
+import { setToLocalStorage } from '../../utils/localStorage';
+import { authKey } from '../../constants/auth.constant';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { registerSchema } from '../../schemas/auth.schema';
 
 const Register = () => {
-    const handleSubmit = (data: FieldValues) => {
-        console.log(data);
+    const navigate = useNavigate();
+    const [register] = useRegisterMutation();
+    const [loginWithEmail] = useLoginWithEmailMutation();
+
+    const handleRegister = async (data: FieldValues) => {
+        const toastId = toast.loading('Creating account...');
+
+        try {
+            const registerRes = await register(data).unwrap();
+            if (registerRes) {
+                const loginRes = await loginWithEmail({
+                    email: registerRes.email,
+                    password: data.password,
+                }).unwrap();
+                const token = loginRes.accessToken;
+                if (token) {
+                    setToLocalStorage(authKey, token);
+                    navigate('/');
+                    toast.success('Login successful!', { id: toastId });
+                }
+            }
+        } catch (error: any) {
+            toast.error(error.message || error.data || 'Something went wrong', {
+                id: toastId,
+            });
+        }
     };
 
     return (
@@ -22,7 +55,10 @@ const Register = () => {
                         Create your free account to start your learning journey.
                     </p>
                 </div>
-                <SFrom onSubmit={handleSubmit}>
+                <SFrom
+                    onSubmit={handleRegister}
+                    resolver={zodResolver(registerSchema)}
+                >
                     <SInput
                         name="name"
                         label="Name"
