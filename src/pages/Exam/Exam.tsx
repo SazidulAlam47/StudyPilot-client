@@ -22,7 +22,17 @@ const Exam = () => {
     const [validateAnswers] = useValidateAnswersMutation();
 
     const handleSubmit = async (data: FieldValues) => {
-        const answers = Object.values(data).map((item) => Number(item));
+        let error = false;
+
+        const answers = Object.values(data).map((item) => {
+            if (!item) error = true;
+            return Number(item);
+        });
+
+        if (error) {
+            toast.error('Complete all Questions');
+            return;
+        }
 
         const toastId = toast.loading('Evaluating answers...');
 
