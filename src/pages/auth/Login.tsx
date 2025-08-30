@@ -1,7 +1,7 @@
 import { Button } from 'flowbite-react';
 import { googleLogin } from '../../firebase/firebase.action';
 import Container from '../../components/Container';
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import googleLogo from '../../assets/google.svg';
 import SFrom from '../../components/form/SForm';
 import SInput from '../../components/form/SInput';
@@ -19,6 +19,7 @@ import { loginSchema } from '../../schemas/auth.schema';
 
 const Login = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [loginWithEmail] = useLoginWithEmailMutation();
     const [loginWithGoogle] = useLoginWithGoogleMutation();
 
@@ -55,7 +56,7 @@ const Login = () => {
             const token = res.accessToken;
             if (token) {
                 setToLocalStorage(authKey, token);
-                navigate('/');
+                location.state ? navigate(location.state) : navigate('/');
                 toast.success('Login successful!', { id: toastId });
             }
         } catch (error: any) {

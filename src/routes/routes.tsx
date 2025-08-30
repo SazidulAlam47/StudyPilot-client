@@ -6,6 +6,7 @@ import Login from '../pages/auth/Login';
 import Register from '../pages/auth/Register';
 import ForgotPass from '../pages/auth/ForgotPass';
 import ResetPass from '../pages/auth/ResetPass';
+import ProtectedRoute from './ProtectedRoute';
 
 const router = createBrowserRouter([
     {
@@ -34,7 +35,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/quiz',
-                element: <Exam />,
+                element: (
+                    <ProtectedRoute>
+                        <Exam />
+                    </ProtectedRoute>
+                ),
             },
         ],
     },
