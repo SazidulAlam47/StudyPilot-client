@@ -12,10 +12,29 @@ import type { FieldValues } from 'react-hook-form';
 import SectionHeading from '../../components/SectionHeading';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { startExamSchema } from '../../schemas/exam.schema';
+import { toast } from 'sonner';
+import { useCreateExamMutation } from '../../redux/api/examApi';
+import { useNavigate } from 'react-router';
 
 const ExamInput = () => {
-    const handleExamStart = (data: FieldValues) => {
-        console.log(data);
+    const navigate = useNavigate();
+    const [createExam] = useCreateExamMutation();
+
+    const handleExamStart = async (data: FieldValues) => {
+        const toastId = toast.loading('Generating Questions with AI...');
+
+        try {
+            const res = await createExam(data).unwrap();
+            
+            navigate(`/quiz/${res._id}`);
+            toast.success('Exam started', {
+                id: toastId,
+            });
+        } catch (error: any) {
+            toast.error(error.message || error.data || 'Something went wrong', {
+                id: toastId,
+            });
+        }
     };
     return (
         <div className="min-h-[calc(100dvh-198px)] flex justify-center items-center py-10">
