@@ -37,6 +37,7 @@ export const registerSchema = z.object({
         .min(1, 'Please enter your Name'),
     email: z.email('Invalid Email'),
     password: newPasswordSchema,
+    file: z.any(),
 });
 
 export const changePasswordSchema = z.object({

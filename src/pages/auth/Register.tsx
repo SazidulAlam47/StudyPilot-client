@@ -14,6 +14,9 @@ import { setToLocalStorage } from '../../utils/localStorage';
 import { authKey } from '../../constants/auth.constant';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema } from '../../schemas/auth.schema';
+import SFileUpload from '../../components/form/SFileUpload';
+import { uploadImageToCloudinary } from '../../utils/cloudinaryUpload';
+import type { IUser } from '../../types';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -21,10 +24,19 @@ const Register = () => {
     const [loginWithEmail] = useLoginWithEmailMutation();
 
     const handleRegister = async (data: FieldValues) => {
-        const toastId = toast.loading('Creating account...');
+        const newUser: Omit<IUser, '_id'> = {
+            name: data.name,
+            email: data.email,
+            password: data.password,
+        };
 
+        const toastId = toast.loading('Creating account...');
         try {
-            const registerRes = await register(data).unwrap();
+            if (data?.file) {
+                newUser.profilePhoto = await uploadImageToCloudinary(data.file);
+            }
+
+            const registerRes = await register(newUser).unwrap();
             if (registerRes) {
                 const loginRes = await loginWithEmail({
                     email: registerRes.email,
@@ -70,6 +82,7 @@ const Register = () => {
                         placeholder="Enter your email"
                     />
                     <SInputPassword />
+                    <SFileUpload label="Profile Photo" />
                     <Button type="submit" className="w-full">
                         Register
                     </Button>

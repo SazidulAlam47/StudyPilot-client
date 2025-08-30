@@ -1,18 +1,33 @@
-import { Button, Navbar, NavbarCollapse, NavbarToggle } from 'flowbite-react';
+import {
+    Avatar,
+    Button,
+    Dropdown,
+    DropdownDivider,
+    DropdownHeader,
+    DropdownItem,
+    Navbar,
+    NavbarCollapse,
+    NavbarToggle,
+} from 'flowbite-react';
 import Container from '../Container';
 import logo from '../../assets/logo.png';
 import { Link, useLocation } from 'react-router';
 import { headerLinks } from '../../constants/header.constant';
 import { getUser, userLogout } from '../../utils/user';
-import NormalText from '../NormalText';
 import { toast } from 'sonner';
 import { useState } from 'react';
 import { cn } from '../../utils/cn';
+import { useGetMeQuery } from '../../redux/api/user.api';
+import { useAppDispatch } from '../../redux/hooks';
+import { baseApi } from '../../redux/api/baseApi';
 
 const Header = () => {
+    const { data: user } = useGetMeQuery(undefined);
+    const dispatch = useAppDispatch();
+    const decodedUser = getUser();
+
     const [, forceUpdate] = useState({});
     const location = useLocation();
-    const user = getUser();
 
     const handleLogout = async () => {
         const toastId = toast.loading('Logging out...');
@@ -20,6 +35,7 @@ const Header = () => {
             await userLogout();
             toast.success('Logout successful!', { id: toastId });
             forceUpdate({}); // Force re-render
+            dispatch(baseApi.util.invalidateTags(['me']));
         } catch (error: any) {
             toast.error(error.message || error.data || 'Something went wrong', {
                 id: toastId,
@@ -39,19 +55,33 @@ const Header = () => {
                         />
                     </Link>
                     <div className="flex md:order-2 gap-2 items-center">
-                        {user ? (
-                            <>
-                                <NormalText className="text-gray-600 mr-0.5">
-                                    {user.name}
-                                </NormalText>
-                                <Button
-                                    size="xs"
-                                    color="red"
-                                    onClick={handleLogout}
-                                >
-                                    Logout
-                                </Button>
-                            </>
+                        {user && decodedUser ? (
+                            <Dropdown
+                                arrowIcon={false}
+                                inline
+                                label={
+                                    <Avatar
+                                        alt="User settings"
+                                        img={user.profilePhoto || undefined}
+                                        rounded
+                                    />
+                                }
+                                className="cursor-pointer"
+                            >
+                                <DropdownHeader>
+                                    <span className="block text-sm">
+                                        {user.name}
+                                    </span>
+                                    <span className="block truncate text-sm font-medium">
+                                        {user.email}
+                                    </span>
+                                </DropdownHeader>
+                                <DropdownItem>ChangePassword</DropdownItem>
+                                <DropdownDivider />
+                                <DropdownItem onClick={handleLogout}>
+                                    Sign out
+                                </DropdownItem>
+                            </Dropdown>
                         ) : (
                             <Link to="/login">
                                 <Button size="xs">Login</Button>
