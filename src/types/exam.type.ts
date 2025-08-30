@@ -11,4 +11,6 @@ export type TExam = {
     totalQuestions: number;
     submittedAnswers?: number[];
     correctAnswers?: number;
+    score?: number;
+    createdAt?: string;
 };

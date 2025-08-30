@@ -26,6 +26,13 @@ const examApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ['exam'],
         }),
+        getPreviousExams: build.query<TExam[], any>({
+            query: () => ({
+                url: '/exams',
+                method: 'GET',
+            }),
+            providesTags: ['exam'],
+        }),
     }),
 });
 
@@ -33,4 +40,5 @@ export const {
     useCreateExamMutation,
     useGetExamQuery,
     useValidateAnswersMutation,
+    useGetPreviousExamsQuery,
 } = examApi;

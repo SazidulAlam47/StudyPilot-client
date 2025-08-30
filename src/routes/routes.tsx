@@ -8,6 +8,10 @@ import ForgotPass from '../pages/auth/ForgotPass';
 import ResetPass from '../pages/auth/ResetPass';
 import ProtectedRoute from './ProtectedRoute';
 import ExamInput from '../pages/Exam/ExamInput';
+import PreviousExams from '../pages/Exam/PreviousExams';
+import Budget from '../pages/budget/Budget';
+import Study from '../pages/study/Study';
+import Schedule from '../pages/schedule/Schedule';
 
 const router = createBrowserRouter([
     {
@@ -47,6 +51,38 @@ const router = createBrowserRouter([
                 element: (
                     <ProtectedRoute>
                         <Exam />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: '/quiz-previous',
+                element: (
+                    <ProtectedRoute>
+                        <PreviousExams />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: '/budget',
+                element: (
+                    <ProtectedRoute>
+                        <Budget />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: '/study',
+                element: (
+                    <ProtectedRoute>
+                        <Study />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: '/schedule',
+                element: (
+                    <ProtectedRoute>
+                        <Schedule />
                     </ProtectedRoute>
                 ),
             },

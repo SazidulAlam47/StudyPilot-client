@@ -11,7 +11,7 @@ import {
 } from 'flowbite-react';
 import Container from '../Container';
 import logo from '../../assets/logo.png';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { headerLinks } from '../../constants/header.constant';
 import { getUser, userLogout } from '../../utils/user';
 import { toast } from 'sonner';
@@ -28,6 +28,7 @@ const Header = () => {
 
     const [, forceUpdate] = useState({});
     const location = useLocation();
+    const navigate = useNavigate();
 
     const handleLogout = async () => {
         const toastId = toast.loading('Logging out...');
@@ -36,6 +37,7 @@ const Header = () => {
             toast.success('Logout successful!', { id: toastId });
             forceUpdate({}); // Force re-render
             dispatch(baseApi.util.invalidateTags(['me']));
+            navigate('/');
         } catch (error: any) {
             toast.error(error.message || error.data || 'Something went wrong', {
                 id: toastId,
@@ -76,7 +78,10 @@ const Header = () => {
                                         {user.email}
                                     </span>
                                 </DropdownHeader>
-                                <DropdownItem>ChangePassword</DropdownItem>
+                                <Link to="/quiz-previous">
+                                    <DropdownItem>Previous Quiz</DropdownItem>
+                                </Link>
+                                <DropdownItem>Change Password</DropdownItem>
                                 <DropdownDivider />
                                 <DropdownItem onClick={handleLogout}>
                                     Sign out

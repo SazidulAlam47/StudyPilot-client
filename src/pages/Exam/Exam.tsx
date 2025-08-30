@@ -12,6 +12,7 @@ import type { FieldValues } from 'react-hook-form';
 import Loader from '../../components/Loader';
 import TitleText from '../../components/TitleText';
 import { toast } from 'sonner';
+import Swal from 'sweetalert2';
 
 const Exam = () => {
     const { id } = useParams();
@@ -26,9 +27,49 @@ const Exam = () => {
         const toastId = toast.loading('Evaluating answers...');
 
         try {
-            await validateAnswers({ id, data: { answers } }).unwrap();
+            const res = await validateAnswers({
+                id,
+                data: { answers },
+            }).unwrap();
             toast.success('Your answers have been evaluated', {
                 id: toastId,
+            });
+            Swal.fire({
+                title: 'Quiz Completed',
+                icon: 'success',
+                html: `
+                    <div class='space-y-2'>
+                        <div>
+                            <span class="font-semibold">Topic:</span>
+                            ${res?.topic}
+                        </div>
+                        <div>
+                            <span class="font-semibold">
+                                Number of Questions:
+                            </span>
+                            ${res?.totalQuestions}
+                        </div>
+                        <div>
+                            <span class="font-semibold">
+                                Total Correct Answers:
+                            </span>
+                            ${
+                                res?.correctAnswers ??
+                                '<span class="text-gray-400 italic">Pending</span>'
+                            }
+                        </div>
+                        <div>
+                            <span class="font-semibold">Score:</span>
+                            ${
+                                res?.correctAnswers
+                                    ? res.score + '%'
+                                    : '<span class="text-gray-400 italic">Pending</span>'
+                            }
+                        </div>
+                    </div>
+                `,
+                focusConfirm: false,
+                confirmButtonText: 'Great!',
             });
         } catch (error: any) {
             toast.error(error.message || error.data || 'Something went wrong', {
@@ -76,12 +117,9 @@ const Exam = () => {
                                             !!exam.submittedAnswers?.length
                                         }
                                         selectedIndex={
-                                            exam?.submittedAnswers?.[index] ||
-                                            undefined
+                                            exam?.submittedAnswers?.[index]
                                         }
-                                        correctAnswer={
-                                            question.correctAnswer || undefined
-                                        }
+                                        correctAnswer={question.correctAnswer}
                                     />
                                     {question?.correctAnswer?.toString() ? (
                                         <p className="text-sm mt-3">
@@ -98,15 +136,17 @@ const Exam = () => {
                                 </div>
                             ))}
 
-                            <div className="flex justify-end">
-                                <Button
-                                    type="submit"
-                                    size="lg"
-                                    className="w-32"
-                                >
-                                    Submit
-                                </Button>
-                            </div>
+                            {exam?.submittedAnswers?.length ? null : (
+                                <div className="flex justify-end">
+                                    <Button
+                                        type="submit"
+                                        size="lg"
+                                        className="w-32"
+                                    >
+                                        Submit
+                                    </Button>
+                                </div>
+                            )}
                         </div>
                     </SFrom>
                 </Card>
@@ -152,13 +192,7 @@ const Exam = () => {
                         <div>
                             <span className="font-semibold">Score:</span>{' '}
                             {exam?.correctAnswers ? (
-                                <span>
-                                    {Math.round(
-                                        (exam.correctAnswers /
-                                            exam.totalQuestions) *
-                                            100
-                                    ) + '%'}
-                                </span>
+                                <span>{exam.score + '%'}</span>
                             ) : (
                                 <span className="text-gray-400 italic">
                                     Pending

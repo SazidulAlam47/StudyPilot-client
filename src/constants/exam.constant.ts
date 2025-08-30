@@ -16,6 +16,6 @@ export const questionsNumbersOptions = questionsNumbers.map(
 export const startExamDefaultValues = {
     topic: '',
     difficulty: 'easy',
-    numQuestions: 10,
+    numQuestions: '10',
     language: 'english',
 };
