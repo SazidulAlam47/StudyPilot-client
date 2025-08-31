@@ -1,7 +1,12 @@
 import { Button } from 'flowbite-react';
 import Container from '../../components/Container';
 import { Link, useNavigate } from 'react-router';
-import { SForm, SInput, SInputPassword, SFileUpload } from '../../components/form';
+import {
+    SForm,
+    SInput,
+    SInputPassword,
+    SFileUpload,
+} from '../../components/form';
 import type { FieldValues } from 'react-hook-form';
 import {
     useLoginWithEmailMutation,
