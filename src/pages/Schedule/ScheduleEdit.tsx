@@ -126,7 +126,7 @@ const ScheduleEdit = () => {
                                     >
                                         <SInput
                                             name={`timeSlot_${index}`}
-                                            placeholder="Time Slot"
+                                            placeholder="HH:MM-HH:MM"
                                             className="min-w-0"
                                         />
                                     </TableHeadCell>
@@ -149,7 +149,6 @@ const ScheduleEdit = () => {
                                         >
                                             <SInput
                                                 name={`${day}_${index}`}
-                                                placeholder="Class (Teacher)"
                                                 className="min-w-0"
                                             />
                                         </TableCell>
