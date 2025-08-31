@@ -36,7 +36,11 @@ const Login = () => {
                 const token = res.accessToken;
                 if (token) {
                     setToLocalStorage(authKey, token);
-                    navigate('/');
+                    if (location.state) {
+                        navigate(location.state);
+                    } else {
+                        navigate('/');
+                    }
                     toast.success('Login successful!');
                 }
             } catch (error: any) {
