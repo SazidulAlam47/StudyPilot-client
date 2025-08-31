@@ -10,7 +10,7 @@ import ProtectedRoute from './ProtectedRoute';
 import ExamInput from '../pages/Exam/ExamInput';
 import PreviousExams from '../pages/Exam/PreviousExams';
 import Budget from '../pages/Budget/Budget';
-import Study from '../pages/study/Study';
+import Study from '../pages/Study/Study';
 import Schedule from '../pages/Schedule/Schedule';
 import ScheduleEdit from '../pages/Schedule/ScheduleEdit';
 
