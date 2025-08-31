@@ -29,7 +29,7 @@ const SRadio = ({
                 <div className={className}>
                     {label && (
                         <div className="mb-2 block">
-                            <Label>{label}</Label>
+                            <Label className="text-base">{label}</Label>
                         </div>
                     )}
                     <div className="flex max-w-md flex-col gap-4">
@@ -68,6 +68,7 @@ const SRadio = ({
                                         htmlFor={`${name}-${stringIndex}`}
                                         disabled={disabled}
                                         className={cn(
+                                            'text-base',
                                             {
                                                 'text-red-600':
                                                     selectedIndex === index &&

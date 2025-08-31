@@ -16,6 +16,7 @@ import { startExamSchema } from '../../schemas/exam.schema';
 import { toast } from 'sonner';
 import { useCreateExamMutation } from '../../redux/api/examApi';
 import { useNavigate } from 'react-router';
+import Container from '../../components/Container';
 
 const ExamInput = () => {
     const navigate = useNavigate();
@@ -38,7 +39,7 @@ const ExamInput = () => {
         }
     };
     return (
-        <div className="min-h-[calc(100dvh-198px)] flex justify-center items-center py-10">
+        <Container className="min-h-[calc(100dvh-198px)] flex justify-center items-center py-10">
             <div className="w-full max-w-md mx-auto">
                 <SectionHeading
                     title="Start Your AI-Generated Exam"
@@ -77,7 +78,7 @@ const ExamInput = () => {
                     </Button>
                 </SForm>
             </div>
-        </div>
+        </Container>
     );
 };
 

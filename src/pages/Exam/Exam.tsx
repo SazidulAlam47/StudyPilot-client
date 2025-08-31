@@ -133,7 +133,7 @@ const Exam = () => {
                                         correctAnswer={question.correctAnswer}
                                     />
                                     {question?.correctAnswer?.toString() ? (
-                                        <p className="text-sm mt-3">
+                                        <p className="mt-3">
                                             <span className="font-bold">
                                                 Correct Answer:{' '}
                                             </span>
