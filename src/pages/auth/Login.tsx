@@ -4,9 +4,9 @@ import { googleLogin } from '../../firebase/firebase.action';
 import Container from '../../components/Container';
 import { Link, useLocation, useNavigate } from 'react-router';
 import googleLogo from '../../assets/google.svg';
-import SForm from '../../components/form/SForm';
-import SInput from '../../components/form/SInput';
-import SInputPassword from '../../components/form/SInputPassword';
+import SForm from '../../components/Form/SForm';
+import SInput from '../../components/Form/SInput';
+import SInputPassword from '../../components/Form/SInputPassword';
 import type { FieldValues } from 'react-hook-form';
 import {
     useLoginWithEmailMutation,

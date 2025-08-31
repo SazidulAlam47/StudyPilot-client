@@ -2,10 +2,10 @@
 import { Button } from 'flowbite-react';
 import Container from '../../components/Container';
 import { Link, useNavigate } from 'react-router';
-import SForm from '../../components/form/SForm';
-import SInput from '../../components/form/SInput';
-import SInputPassword from '../../components/form/SInputPassword';
-import SFileUpload from '../../components/form/SFileUpload';
+import SForm from '../../components/Form/SForm';
+import SInput from '../../components/Form/SInput';
+import SInputPassword from '../../components/Form/SInputPassword';
+import SFileUpload from '../../components/Form/SFileUpload';
 import type { FieldValues } from 'react-hook-form';
 import {
     useLoginWithEmailMutation,
