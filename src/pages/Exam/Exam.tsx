@@ -32,7 +32,7 @@ const Exam = () => {
         });
 
         if (error) {
-            toast.error('Complete all Questions');
+            toast.error('Please Complete all Questions');
             return;
         }
 
