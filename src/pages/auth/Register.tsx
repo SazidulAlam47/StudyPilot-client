@@ -1,12 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from 'flowbite-react';
 import Container from '../../components/Container';
 import { Link, useNavigate } from 'react-router';
-import {
-    SForm,
-    SInput,
-    SInputPassword,
-    SFileUpload,
-} from '../../components/form';
+import SForm from '../../components/form/SForm';
+import SInput from '../../components/form/SInput';
+import SInputPassword from '../../components/form/SInputPassword';
+import SFileUpload from '../../components/form/SFileUpload';
 import type { FieldValues } from 'react-hook-form';
 import {
     useLoginWithEmailMutation,
