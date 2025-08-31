@@ -92,7 +92,7 @@ const Exam = () => {
         if (isError) {
             navigate('/quiz');
         }
-    }, [isError]);
+    }, [isError, navigate]);
 
     if (isLoading) {
         return <Loader />;

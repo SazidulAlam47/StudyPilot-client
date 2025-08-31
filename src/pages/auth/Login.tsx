@@ -16,6 +16,7 @@ import { setToLocalStorage } from '../../utils/localStorage';
 import { authKey } from '../../constants/auth.constant';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from '../../schemas/auth.schema';
+import formatFirebaseError from '../../utils/formatFirebaseError';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -42,8 +43,8 @@ const Login = () => {
                     error.message || error.data || 'Something went wrong'
                 );
             }
-        } catch (error) {
-            console.log(error);
+        } catch (error: any) {
+            toast.error(formatFirebaseError(error.message));
         }
     };
 
@@ -56,7 +57,11 @@ const Login = () => {
             const token = res.accessToken;
             if (token) {
                 setToLocalStorage(authKey, token);
-                location.state ? navigate(location.state) : navigate('/');
+                if (location.state) {
+                    navigate(location.state);
+                } else {
+                    navigate('/');
+                }
                 toast.success('Login successful!', { id: toastId });
             }
         } catch (error: any) {
