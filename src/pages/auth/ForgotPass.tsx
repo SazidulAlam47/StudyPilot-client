@@ -1,8 +1,7 @@
 import { Button } from 'flowbite-react';
 import Container from '../../components/Container';
 import { Link, useNavigate } from 'react-router';
-import SForm from '../../components/form/SForm';
-import SInput from '../../components/form/SInput';
+import { SForm, SInput } from '../../components/form';
 import type { FieldValues } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { forgotPasswordSchema } from '../../schemas/auth.schema';

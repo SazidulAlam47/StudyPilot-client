@@ -1,7 +1,5 @@
 import { Button } from 'flowbite-react';
-import SForm from '../../components/form/SForm';
-import SInput from '../../components/form/SInput';
-import SSelect from '../../components/form/SSelect';
+import { SForm, SInput, SSelect } from '../../components/form';
 import {
     difficultiesOptions,
     languagesOptions,

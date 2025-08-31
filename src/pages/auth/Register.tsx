@@ -1,9 +1,7 @@
 import { Button } from 'flowbite-react';
 import Container from '../../components/Container';
 import { Link, useNavigate } from 'react-router';
-import SForm from '../../components/form/SForm';
-import SInput from '../../components/form/SInput';
-import SInputPassword from '../../components/form/SInputPassword';
+import { SForm, SInput, SInputPassword, SFileUpload } from '../../components/form';
 import type { FieldValues } from 'react-hook-form';
 import {
     useLoginWithEmailMutation,
@@ -14,7 +12,6 @@ import { setToLocalStorage } from '../../utils/localStorage';
 import { authKey } from '../../constants/auth.constant';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema } from '../../schemas/auth.schema';
-import SFileUpload from '../../components/form/SFileUpload';
 import { uploadImageToCloudinary } from '../../utils/cloudinaryUpload';
 import type { IUser } from '../../types';
 

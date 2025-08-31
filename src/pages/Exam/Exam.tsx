@@ -5,8 +5,7 @@ import {
     useValidateAnswersMutation,
 } from '../../redux/api/examApi';
 import { useEffect } from 'react';
-import SForm from '../../components/form/SForm';
-import SRadio from '../../components/form/SRadio';
+import { SRadio, SForm } from '../../components/form';
 import { Button, Card } from 'flowbite-react';
 import type { FieldValues } from 'react-hook-form';
 import Loader from '../../components/Loader';
