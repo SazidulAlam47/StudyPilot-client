@@ -12,6 +12,7 @@ import PreviousExams from '../pages/Exam/PreviousExams';
 import Budget from '../pages/Budget/Budget';
 import Study from '../pages/study/Study';
 import Schedule from '../pages/Schedule/Schedule';
+import ScheduleEdit from '../pages/Schedule/ScheduleEdit';
 
 const router = createBrowserRouter([
     {
@@ -83,6 +84,14 @@ const router = createBrowserRouter([
                 element: (
                     <ProtectedRoute>
                         <Schedule />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: '/schedule-edit',
+                element: (
+                    <ProtectedRoute>
+                        <ScheduleEdit />
                     </ProtectedRoute>
                 ),
             },

@@ -1,6 +1,7 @@
 import { createTheme } from 'flowbite-react';
 
 const customTheme = createTheme({
+    darkMode: false,
     button: {
         base: 'flex min-w-[84px] max-w-[480px] items-center justify-center overflow-hidden rounded-lg font-bold leading-normal tracking-[0.015em] transition-all cursor-pointer',
         color: {
