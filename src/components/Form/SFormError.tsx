@@ -1,4 +1,4 @@
-const SFromError = ({ error }: { error: any }) => {
+const SFormError = ({ error }: { error: any }) => {
     return (
         <>
             {error && (
@@ -10,4 +10,4 @@ const SFromError = ({ error }: { error: any }) => {
     );
 };
 
-export default SFromError;
+export default SFormError;

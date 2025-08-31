@@ -1,5 +1,5 @@
 import { Controller } from 'react-hook-form';
-import UFromError from './SFromError';
+import SFormError from './SFormError';
 import { Label, TextInput } from 'flowbite-react';
 
 type UInputProps = {
@@ -37,7 +37,7 @@ const SInput = ({
                         disabled={disabled}
                         color={error ? 'failure' : 'gray'}
                     />
-                    <UFromError error={error} />
+                    <SFormError error={error} />
                 </div>
             )}
         />

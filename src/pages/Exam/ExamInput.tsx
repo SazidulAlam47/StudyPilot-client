@@ -1,5 +1,5 @@
 import { Button } from 'flowbite-react';
-import SFrom from '../../components/form/SForm';
+import SForm from '../../components/form/SForm';
 import SInput from '../../components/form/SInput';
 import SSelect from '../../components/form/SSelect';
 import {
@@ -25,7 +25,7 @@ const ExamInput = () => {
 
         try {
             const res = await createExam(data).unwrap();
-            
+
             navigate(`/quiz/${res._id}`);
             toast.success('Exam started', {
                 id: toastId,
@@ -44,7 +44,7 @@ const ExamInput = () => {
                     subTitle="Input your topic, difficulty, and language to create a personalized quiz that tests your knowledge effectively."
                     size="small"
                 />
-                <SFrom
+                <SForm
                     onSubmit={handleExamStart}
                     resolver={zodResolver(startExamSchema)}
                     defaultValues={startExamDefaultValues}
@@ -74,7 +74,7 @@ const ExamInput = () => {
                     <Button type="submit" className="w-full">
                         Start Quiz
                     </Button>
-                </SFrom>
+                </SForm>
             </div>
         </div>
     );

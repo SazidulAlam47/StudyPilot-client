@@ -3,7 +3,7 @@ import { googleLogin } from '../../firebase/firebase.action';
 import Container from '../../components/Container';
 import { Link, useLocation, useNavigate } from 'react-router';
 import googleLogo from '../../assets/google.svg';
-import SFrom from '../../components/form/SForm';
+import SForm from '../../components/form/SForm';
 import SInput from '../../components/form/SInput';
 import SInputPassword from '../../components/form/SInputPassword';
 import type { FieldValues } from 'react-hook-form';
@@ -82,7 +82,7 @@ const Login = () => {
                         Enter your email and password to sign in
                     </p>
                 </div>
-                <SFrom
+                <SForm
                     onSubmit={handleEmailLogin}
                     resolver={zodResolver(loginSchema)}
                 >
@@ -95,7 +95,7 @@ const Login = () => {
                     <Button type="submit" className="w-full">
                         Login
                     </Button>
-                </SFrom>
+                </SForm>
                 <div className="flex flex-col gap-3 mt-2">
                     <div className="text-center">
                         <Link

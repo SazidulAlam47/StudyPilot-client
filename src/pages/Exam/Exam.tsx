@@ -5,7 +5,7 @@ import {
     useValidateAnswersMutation,
 } from '../../redux/api/examApi';
 import { useEffect } from 'react';
-import SFrom from '../../components/form/SForm';
+import SForm from '../../components/form/SForm';
 import SRadio from '../../components/form/SRadio';
 import { Button, Card } from 'flowbite-react';
 import type { FieldValues } from 'react-hook-form';
@@ -112,7 +112,7 @@ const Exam = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <Card className="md:col-span-2 p-5">
-                    <SFrom
+                    <SForm
                         onSubmit={handleSubmit}
                         defaultValues={defaultValues}
                     >
@@ -158,7 +158,7 @@ const Exam = () => {
                                 </div>
                             )}
                         </div>
-                    </SFrom>
+                    </SForm>
                 </Card>
 
                 <Card className="sticky top-24 bg-white shadow-lg rounded-lg p-6 h-fit">

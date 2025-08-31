@@ -1,7 +1,7 @@
 import { Button } from 'flowbite-react';
 import Container from '../../components/Container';
 import { Link, useNavigate } from 'react-router';
-import SFrom from '../../components/form/SForm';
+import SForm from '../../components/form/SForm';
 import SInput from '../../components/form/SInput';
 import SInputPassword from '../../components/form/SInputPassword';
 import type { FieldValues } from 'react-hook-form';
@@ -67,7 +67,7 @@ const Register = () => {
                         Create your free account to start your learning journey.
                     </p>
                 </div>
-                <SFrom
+                <SForm
                     onSubmit={handleRegister}
                     resolver={zodResolver(registerSchema)}
                 >
@@ -86,7 +86,7 @@ const Register = () => {
                     <Button type="submit" className="w-full">
                         Register
                     </Button>
-                </SFrom>
+                </SForm>
                 <div className="flex flex-col gap-3 mt-2">
                     <div className="text-center">
                         <span className="text-[#60708a] text-sm font-normal">

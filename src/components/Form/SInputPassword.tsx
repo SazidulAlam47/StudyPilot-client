@@ -1,5 +1,5 @@
 import { Controller } from 'react-hook-form';
-import UFromError from './SFromError';
+import SFormError from './SFormError';
 import { Label, TextInput } from 'flowbite-react';
 import { useState } from 'react';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
@@ -46,7 +46,7 @@ const SInputPassword = ({
                             )}
                         </button>
                     </div>
-                    <UFromError error={error} />
+                    <SFormError error={error} />
                 </div>
             )}
         />

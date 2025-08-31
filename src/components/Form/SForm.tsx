@@ -7,7 +7,7 @@ import {
 } from 'react-hook-form';
 import { cn } from '../../utils/cn';
 
-export type TUFromFncRef = {
+export type TSFormFncRef = {
     resetFrom: () => void;
 };
 
@@ -17,14 +17,14 @@ type TFormConfig = {
     values?: Record<string, unknown>;
 };
 
-type UFromProps = {
+type SFormProps = {
     children: ReactNode;
     onSubmit: SubmitHandler<FieldValues>;
     fncRef?: RefObject<unknown>;
     className?: string;
 } & TFormConfig;
 
-const SFrom = ({
+const SForm = ({
     children,
     onSubmit,
     defaultValues,
@@ -32,7 +32,7 @@ const SFrom = ({
     fncRef = undefined,
     values,
     className,
-}: UFromProps) => {
+}: SFormProps) => {
     const formConfig: TFormConfig = {};
 
     if (defaultValues) {
@@ -67,4 +67,4 @@ const SFrom = ({
     );
 };
 
-export default SFrom;
+export default SForm;

@@ -1,5 +1,5 @@
 import { useController, useFormContext } from 'react-hook-form';
-import UFromError from './SFromError';
+import SFormError from './SFormError';
 import { FileInput, Label } from 'flowbite-react';
 
 type UInputProps = {
@@ -33,7 +33,7 @@ const SFileUpload = ({ label, className }: UInputProps) => {
                     }
                 }}
             />
-            <UFromError error={error} />
+            <SFormError error={error} />
         </div>
     );
 };

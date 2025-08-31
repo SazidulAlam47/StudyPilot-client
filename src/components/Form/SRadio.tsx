@@ -1,5 +1,5 @@
 import { Controller } from 'react-hook-form';
-import UFromError from './SFromError'; // Assuming this is your error display component
+import SFormError from './SFormError'; // Assuming this is your error display component
 import { Label, Radio } from 'flowbite-react';
 import { cn } from '../../utils/cn';
 
@@ -86,7 +86,7 @@ const SRadio = ({
                             );
                         })}
                     </div>
-                    <UFromError error={error} />
+                    <SFormError error={error} />
                 </div>
             )}
         />

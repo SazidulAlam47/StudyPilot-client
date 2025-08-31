@@ -1,5 +1,5 @@
 import { Controller } from 'react-hook-form';
-import UFromError from './SFromError';
+import SFormError from './SFormError';
 import { Label, Select } from 'flowbite-react';
 
 type USelectProps = {
@@ -37,7 +37,7 @@ const SSelect = ({
                             </option>
                         ))}
                     </Select>
-                    <UFromError error={error} />
+                    <SFormError error={error} />
                 </div>
             )}
         />

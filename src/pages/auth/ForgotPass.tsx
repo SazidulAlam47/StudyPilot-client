@@ -1,7 +1,7 @@
 import { Button } from 'flowbite-react';
 import Container from '../../components/Container';
 import { Link, useNavigate } from 'react-router';
-import SFrom from '../../components/form/SForm';
+import SForm from '../../components/form/SForm';
 import SInput from '../../components/form/SInput';
 import type { FieldValues } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -41,7 +41,7 @@ const ForgotPass = () => {
                         Enter your email to reset you password
                     </p>
                 </div>
-                <SFrom
+                <SForm
                     onSubmit={handleForgetPass}
                     resolver={zodResolver(forgotPasswordSchema)}
                 >
@@ -53,7 +53,7 @@ const ForgotPass = () => {
                     <Button type="submit" className="w-full">
                         Send Reset Email
                     </Button>
-                </SFrom>
+                </SForm>
                 <div className="flex flex-col gap-3 mt-2">
                     <div className="text-center">
                         <span className="text-[#60708a] text-sm font-normal">
