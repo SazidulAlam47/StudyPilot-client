@@ -14,6 +14,7 @@ import Loader from '../../components/Loader';
 import TitleText from '../../components/TitleText';
 import { toast } from 'sonner';
 import Swal from 'sweetalert2';
+import capitalize from '../../utils/capitalize';
 
 const Exam = () => {
     const { id } = useParams();
@@ -52,7 +53,7 @@ const Exam = () => {
                     <div class='space-y-2'>
                         <div>
                             <span class="font-semibold">Topic:</span>
-                            ${res?.topic}
+                            ${res?.topic} (${capitalize(res.difficulty)})
                         </div>
                         <div>
                             <span class="font-semibold">
@@ -171,6 +172,14 @@ const Exam = () => {
                         <div>
                             <span className="font-semibold">Topic:</span>{' '}
                             {exam?.topic}
+                        </div>
+                        <div>
+                            <span className="font-semibold">Difficulty:</span>{' '}
+                            {capitalize(exam?.difficulty || '')}
+                        </div>
+                        <div>
+                            <span className="font-semibold">Language:</span>{' '}
+                            {capitalize(exam?.language || '')}
                         </div>
                         <div>
                             <span className="font-semibold">Status:</span>{' '}

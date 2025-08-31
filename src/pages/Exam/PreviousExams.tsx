@@ -13,6 +13,7 @@ import {
 } from 'flowbite-react';
 import moment from 'moment';
 import { IoDocumentTextOutline } from 'react-icons/io5';
+import capitalize from '../../utils/capitalize';
 
 const PreviousExams = () => {
     const { data: exams, isLoading } = useGetPreviousExamsQuery(undefined);
@@ -33,6 +34,12 @@ const PreviousExams = () => {
                             <TableRow>
                                 <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
                                     Topic
+                                </TableHeadCell>
+                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                    Difficulty
+                                </TableHeadCell>
+                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                    Language
                                 </TableHeadCell>
                                 <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
                                     Total Questions
@@ -62,6 +69,12 @@ const PreviousExams = () => {
                                 >
                                     <TableCell className="px-2 py-2 sm:px-4 sm:py-3 whitespace-nowrap font-medium text-gray-900 dark:text-white">
                                         {exam.topic}
+                                    </TableCell>
+                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        {capitalize(exam.difficulty || '')}
+                                    </TableCell>
+                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        {capitalize(exam.language || '')}
                                     </TableCell>
                                     <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
                                         {exam.totalQuestions}
