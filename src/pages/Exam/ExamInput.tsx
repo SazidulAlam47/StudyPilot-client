@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from 'flowbite-react';
-import SForm from '../../components/Form/SForm';
-import SInput from '../../components/Form/SInput';
-import SSelect from '../../components/Form/SSelect';
+import SForm from '../../components/form/SForm';
+import SInput from '../../components/form/SInput';
+import SSelect from '../../components/form/SSelect';
 import {
     difficultiesOptions,
     languagesOptions,

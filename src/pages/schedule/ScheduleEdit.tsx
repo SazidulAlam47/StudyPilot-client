@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Container from '../../components/Container';
 import SectionHeading from '../../components/SectionHeading';
-import SForm from '../../components/Form/SForm';
-import SInput from '../../components/Form/SInput';
+import SForm from '../../components/form/SForm';
+import SInput from '../../components/form/SInput';
 import {
     Table,
     TableBody,
