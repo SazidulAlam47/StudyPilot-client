@@ -18,7 +18,7 @@ const Footer = () => {
                             <img
                                 src={logo}
                                 alt="StudyPilot Logo"
-                                className="size-20 md:size-12"
+                                className="w-20  md:w-12"
                             />
                         </Link>
                         <FooterLinkGroup className="">

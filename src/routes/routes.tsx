@@ -9,9 +9,9 @@ import ResetPass from '../pages/auth/ResetPass';
 import ProtectedRoute from './ProtectedRoute';
 import ExamInput from '../pages/Exam/ExamInput';
 import PreviousExams from '../pages/Exam/PreviousExams';
-import Budget from '../pages/budget/Budget';
+import Budget from '../pages/Budget/Budget';
 import Study from '../pages/study/Study';
-import Schedule from '../pages/schedule/Schedule';
+import Schedule from '../pages/Schedule/Schedule';
 
 const router = createBrowserRouter([
     {
