@@ -9,10 +9,20 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { forgotPasswordSchema } from '../../schemas/auth.schema';
 import { useForgotPasswordMutation } from '../../redux/api/auth.api';
 import { toast } from 'sonner';
+import { getUser } from '../../utils/user';
+import { useEffect } from 'react';
 
 const ForgotPass = () => {
     const navigate = useNavigate();
     const [forgotPassword] = useForgotPasswordMutation();
+
+    const decodedUser = getUser();
+
+    useEffect(() => {
+        if (decodedUser) {
+            navigate('/');
+        }
+    }, [decodedUser, navigate]);
 
     const handleForgetPass = async (data: FieldValues) => {
         const toastId = toast.loading('Sending reset email...');

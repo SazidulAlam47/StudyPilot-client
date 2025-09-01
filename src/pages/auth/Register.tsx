@@ -18,11 +18,21 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema } from '../../schemas/auth.schema';
 import { uploadImageToCloudinary } from '../../utils/cloudinaryUpload';
 import type { IUser } from '../../types';
+import { getUser } from '../../utils/user';
+import { useEffect } from 'react';
 
 const Register = () => {
     const navigate = useNavigate();
     const [register] = useRegisterMutation();
     const [loginWithEmail] = useLoginWithEmailMutation();
+
+    const decodedUser = getUser();
+
+    useEffect(() => {
+        if (decodedUser) {
+            navigate('/');
+        }
+    }, [decodedUser, navigate]);
 
     const handleRegister = async (data: FieldValues) => {
         const newUser: Omit<IUser, '_id'> = {

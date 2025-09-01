@@ -37,14 +37,21 @@ const router = createBrowserRouter([
                 path: '/forget-password',
                 element: <ForgotPass />,
             },
-
             {
                 path: '/change-password',
-                element: <ChangePass />,
+                element: (
+                    <ProtectedRoute>
+                        <ChangePass />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: '/set-password',
-                element: <SetPass />,
+                element: (
+                    <ProtectedRoute>
+                        <SetPass />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: '/quiz',

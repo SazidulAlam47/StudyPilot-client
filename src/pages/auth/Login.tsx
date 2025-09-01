@@ -18,12 +18,22 @@ import { authKey } from '../../constants/auth.constant';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from '../../schemas/auth.schema';
 import formatFirebaseError from '../../utils/formatFirebaseError';
+import { getUser } from '../../utils/user';
+import { useEffect } from 'react';
 
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [loginWithEmail] = useLoginWithEmailMutation();
     const [loginWithGoogle] = useLoginWithGoogleMutation();
+
+    const decodedUser = getUser();
+
+    useEffect(() => {
+        if (decodedUser) {
+            navigate('/');
+        }
+    }, [decodedUser, navigate]);
 
     const handleGoogleLogin = async () => {
         try {
