@@ -50,4 +50,5 @@ export const {
     useCreateTransactionMutation,
     useUpdateTransactionMutation,
     useGetTransactionStatsQuery,
+    useDeleteTransactionMutation,
 } = budgetApi;

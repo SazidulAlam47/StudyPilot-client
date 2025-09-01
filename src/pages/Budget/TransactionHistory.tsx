@@ -16,6 +16,7 @@ import capitalize from '../../utils/capitalize';
 import TitleText from '../../components/TitleText';
 import AddTransactionModal from './AddTransactionModal';
 import UpdateTransactionModal from './UpdateTransactionModal';
+import DeleteTransactionModal from './DeleteTransactionModal';
 
 const TransactionHistory = () => {
     const { data: transactions, isLoading } =
@@ -102,6 +103,9 @@ const TransactionHistory = () => {
                                     </TableCell>
                                     <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
                                         <UpdateTransactionModal
+                                            transaction={transaction}
+                                        />
+                                        <DeleteTransactionModal
                                             transaction={transaction}
                                         />
                                     </TableCell>
