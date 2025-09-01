@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { TTransaction } from '../../types';
+import type { TTransaction, TTransactionStats } from '../../types';
 import { baseApi } from '../api/baseApi';
 
 const budgetApi = baseApi.injectEndpoints({
@@ -28,6 +28,13 @@ const budgetApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ['transaction'],
         }),
+        getTransactionStats: build.query<TTransactionStats, any>({
+            query: () => ({
+                url: '/transactions/stats',
+                method: 'GET',
+            }),
+            providesTags: ['transaction'],
+        }),
     }),
 });
 
@@ -35,4 +42,5 @@ export const {
     useGetMyTransactionsQuery,
     useCreateTransactionMutation,
     useUpdateTransactionMutation,
+    useGetTransactionStatsQuery,
 } = budgetApi;

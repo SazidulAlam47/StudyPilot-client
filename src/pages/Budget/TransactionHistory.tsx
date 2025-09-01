@@ -17,13 +17,13 @@ import TitleText from '../../components/TitleText';
 import AddTransactionModal from './AddTransactionModal';
 import UpdateTransactionModal from './UpdateTransactionModal';
 
-const TransactionTable = () => {
+const TransactionHistory = () => {
     const { data: transactions, isLoading } =
         useGetMyTransactionsQuery(undefined);
 
     if (isLoading)
         return (
-            <div className="md:col-span-2 min-h-[calc(100dvh-198px)] my-10 space-y-3">
+            <div className="md:col-span-2 my-10 space-y-3">
                 <TitleText className="font-bold text-2xl sm:font-bold sm:text-3xl">
                     Transaction History
                 </TitleText>
@@ -32,7 +32,7 @@ const TransactionTable = () => {
         );
 
     return (
-        <Container className="md:col-span-2 min-h-[calc(100dvh-198px)] my-10 space-y-3">
+        <Container className="md:col-span-2 my-10 space-y-3">
             <TitleText className="font-bold text-2xl sm:font-bold sm:text-3xl">
                 Transaction History
             </TitleText>
@@ -100,7 +100,7 @@ const TransactionTable = () => {
                                             <span className="text-xl">
                                                 &#x09F3;
                                             </span>
-                                            {transaction.amount}
+                                            {transaction.amount.toLocaleString()}
                                         </span>
                                     </TableCell>
                                     <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
@@ -132,4 +132,4 @@ const TransactionTable = () => {
     );
 };
 
-export default TransactionTable;
+export default TransactionHistory;

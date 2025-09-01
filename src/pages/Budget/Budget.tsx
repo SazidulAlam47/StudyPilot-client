@@ -1,7 +1,8 @@
 import Container from '../../components/Container';
 import SectionHeading from '../../components/SectionHeading';
+import TransactionStats from './TransactionStats';
 
-import TransactionTable from './TransactionTable';
+import TransactionHistory from './TransactionHistory';
 
 const Budget = () => {
     return (
@@ -12,8 +13,10 @@ const Budget = () => {
                 className="mb-8"
             />
             <div className="grid grid-cols-1 md:grid-cols-3">
-                <TransactionTable />
-                <div></div>
+                <TransactionHistory />
+                <div>
+                    <TransactionStats />
+                </div>
             </div>
         </Container>
     );
