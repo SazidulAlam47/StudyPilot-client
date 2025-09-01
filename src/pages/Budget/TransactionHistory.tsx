@@ -94,9 +94,6 @@ const TransactionHistory = () => {
                                                     : 'text-red-600'
                                             }`}
                                         >
-                                            {transaction.tnxType === 'inflow'
-                                                ? '+'
-                                                : '-'}
                                             <span className="text-xl">
                                                 &#x09F3;
                                             </span>

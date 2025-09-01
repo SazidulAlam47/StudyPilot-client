@@ -35,6 +35,13 @@ const budgetApi = baseApi.injectEndpoints({
             }),
             providesTags: ['transaction'],
         }),
+        deleteTransaction: build.mutation<TTransaction, any>({
+            query: (id: string) => ({
+                url: `/transactions/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: ['transaction'],
+        }),
     }),
 });
 

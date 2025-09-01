@@ -3,8 +3,15 @@ import SectionHeading from '../../components/SectionHeading';
 import TransactionStats from './TransactionStats';
 
 import TransactionHistory from './TransactionHistory';
+import { useGetTransactionStatsQuery } from '../../redux/api/budgetApi';
+import Loader from '../../components/Loader';
+import TransactionChart from './TransactionChart';
 
 const Budget = () => {
+    const { data: stats, isLoading } = useGetTransactionStatsQuery(undefined);
+    if (isLoading) {
+        return <Loader />;
+    }
     return (
         <Container className="min-h-[calc(100dvh-198px)] py-10">
             <SectionHeading
@@ -15,7 +22,8 @@ const Budget = () => {
             <div className="grid grid-cols-1 md:grid-cols-3">
                 <TransactionHistory />
                 <div>
-                    <TransactionStats />
+                    <TransactionStats stats={stats} />
+                    <TransactionChart stats={stats} />
                 </div>
             </div>
         </Container>
