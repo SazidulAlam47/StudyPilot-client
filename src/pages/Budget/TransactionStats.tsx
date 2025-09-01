@@ -9,6 +9,8 @@ import {
     TableRow,
 } from 'flowbite-react';
 import type { TTransactionStats } from '../../types';
+import { TbCurrencyTaka } from 'react-icons/tb';
+import { cn } from '../../utils/cn';
 
 type TransactionStatsProps = {
     stats?: TTransactionStats;
@@ -68,17 +70,19 @@ const TransactionStats = ({ stats }: TransactionStatsProps) => {
                                 </TableCell>
                                 <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
                                     <span
-                                        className={`font-semibold text-lg ${
-                                            stat.type === 'inflow'
-                                                ? 'text-green-600'
-                                                : stat.type === 'outflow'
-                                                ? 'text-red-600'
-                                                : 'text-gray-900'
-                                        }`}
+                                        className={cn(
+                                            'font-semibold text-lg flex items-center',
+                                            {
+                                                'text-green-600':
+                                                    stat.type === 'inflow',
+                                                'text-red-600':
+                                                    stat.type === 'outflow',
+                                                'text-gray-900':
+                                                    stat.type === 'balance',
+                                            }
+                                        )}
                                     >
-                                        <span className="text-xl">
-                                            &#x09F3;
-                                        </span>
+                                        <TbCurrencyTaka />
                                         {stat.value.toLocaleString()}
                                     </span>
                                 </TableCell>

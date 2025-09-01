@@ -17,7 +17,7 @@ const Budget = () => {
             <SectionHeading
                 title="Budget Manager"
                 subTitle="Stay on top of your finances by tracking income, expenses, and savings"
-                className="mb-8"
+                className="mb-0 md:mb-8"
             />
             <div className="grid grid-cols-1 md:grid-cols-3">
                 <TransactionHistory />

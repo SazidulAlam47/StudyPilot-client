@@ -17,6 +17,8 @@ import TitleText from '../../components/TitleText';
 import AddTransactionModal from './AddTransactionModal';
 import UpdateTransactionModal from './UpdateTransactionModal';
 import DeleteTransactionModal from './DeleteTransactionModal';
+import { TbCurrencyTaka } from 'react-icons/tb';
+import { cn } from '../../utils/cn';
 
 const TransactionHistory = () => {
     const { data: transactions, isLoading } =
@@ -89,19 +91,23 @@ const TransactionHistory = () => {
                                     </TableCell>
                                     <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
                                         <span
-                                            className={`font-semibold ${
-                                                transaction.tnxType === 'inflow'
-                                                    ? 'text-green-600'
-                                                    : 'text-red-600'
-                                            }`}
+                                            className={cn(
+                                                'font-semibold flex items-center',
+                                                {
+                                                    'text-green-600':
+                                                        transaction.tnxType ===
+                                                        'inflow',
+                                                    'text-red-600':
+                                                        transaction.tnxType ===
+                                                        'outflow',
+                                                }
+                                            )}
                                         >
-                                            <span className="text-xl">
-                                                &#x09F3;
-                                            </span>
+                                            <TbCurrencyTaka />
                                             {transaction.amount.toLocaleString()}
                                         </span>
                                     </TableCell>
-                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3 flex items-center">
                                         <UpdateTransactionModal
                                             transaction={transaction}
                                         />
