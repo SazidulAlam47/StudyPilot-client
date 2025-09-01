@@ -15,7 +15,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { startExamSchema } from '../../schemas/exam.schema';
 import { toast } from 'sonner';
 import { useCreateExamMutation } from '../../redux/api/examApi';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Container from '../../components/Container';
 
 const ExamInput = () => {
@@ -46,6 +46,14 @@ const ExamInput = () => {
                     subTitle="Input your topic, difficulty, and language to create a personalized quiz that tests your knowledge effectively."
                     size="small"
                 />
+                <div className="mb-6 text-right">
+                    <Link
+                        to="/quiz-previous"
+                        className="text-blue-600 hover:underline font-medium transition-colors"
+                    >
+                        View Previous Quiz Results
+                    </Link>
+                </div>
                 <SForm
                     onSubmit={handleExamStart}
                     resolver={zodResolver(startExamSchema)}

@@ -6,39 +6,21 @@ import SInput from '../../components/form/SInput';
 import type { FieldValues } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { resetPasswordSchema } from '../../schemas/auth.schema';
-import { useNavigate, useSearchParams } from 'react-router';
-import { useResetPasswordMutation } from '../../redux/api/auth.api';
-import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import { useSetPasswordMutation } from '../../redux/api/auth.api';
 import { toast } from 'sonner';
 
-const ResetPass = () => {
+const SetPass = () => {
     const navigate = useNavigate();
-    const [searchParams] = useSearchParams();
 
-    const [resetPassword] = useResetPasswordMutation();
-
-    const id = searchParams.get('id');
-    const token = searchParams.get('token');
-
-    useEffect(() => {
-        if (!id || !token) {
-            navigate('/login');
-        }
-    }, [id, token, navigate]);
+    const [setPassword] = useSetPasswordMutation();
 
     const handleResetPass = async (data: FieldValues) => {
-        const toastId = toast.loading('Resetting password...');
+        const toastId = toast.loading('Setting new password...');
         try {
-            const resetPasswordData = {
-                token,
-                data: {
-                    id,
-                    password: data.password,
-                },
-            };
-            await resetPassword(resetPasswordData).unwrap();
-            toast.success('Password reset successfully!', { id: toastId });
-            navigate('/login');
+            await setPassword(data).unwrap();
+            toast.success('Password set successfully!', { id: toastId });
+            navigate('/');
         } catch (error: any) {
             toast.error(error.message || error.data || 'Something went wrong', {
                 id: toastId,
@@ -47,11 +29,11 @@ const ResetPass = () => {
     };
 
     return (
-        <Container className="min-h-[100dvh] flex justify-center items-center py-10">
+        <Container className="min-h-[calc(100dvh-198px)] flex justify-center items-center py-10">
             <div className="w-full max-w-md mx-auto">
                 <div className="text-center mb-4">
                     <h1 className="text-[#111418] text-3xl font-bold leading-tight mb-2">
-                        Reset Password
+                        Set Password
                     </h1>
                 </div>
                 <SForm
@@ -71,7 +53,7 @@ const ResetPass = () => {
                         placeholder="Confirm your new password"
                     />
                     <Button type="submit" className="w-full">
-                        Reset Password
+                        Set Password
                     </Button>
                 </SForm>
             </div>
@@ -79,4 +61,4 @@ const ResetPass = () => {
     );
 };
 
-export default ResetPass;
+export default SetPass;

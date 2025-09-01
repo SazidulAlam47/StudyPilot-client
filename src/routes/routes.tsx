@@ -13,6 +13,8 @@ import Budget from '../pages/Budget/Budget';
 import Study from '../pages/Study/Study';
 import Schedule from '../pages/Schedule/Schedule';
 import ScheduleEdit from '../pages/Schedule/ScheduleEdit';
+import ChangePass from '../pages/auth/ChangePass';
+import SetPass from '../pages/auth/SetPass';
 
 const router = createBrowserRouter([
     {
@@ -35,9 +37,14 @@ const router = createBrowserRouter([
                 path: '/forget-password',
                 element: <ForgotPass />,
             },
+
             {
-                path: '/reset-password',
-                element: <ResetPass />,
+                path: '/change-password',
+                element: <ChangePass />,
+            },
+            {
+                path: '/set-password',
+                element: <SetPass />,
             },
             {
                 path: '/quiz',
@@ -96,6 +103,10 @@ const router = createBrowserRouter([
                 ),
             },
         ],
+    },
+    {
+        path: '/reset-password',
+        element: <ResetPass />,
     },
 ]);
 

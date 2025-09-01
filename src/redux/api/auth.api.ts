@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ILogin, IUser } from '../../types';
 import { baseApi } from '../api/baseApi';
 
@@ -33,6 +34,7 @@ const authApi = baseApi.injectEndpoints({
                 method: 'POST',
                 data,
             }),
+            invalidatesTags: ['me'],
         }),
         forgotPassword: build.mutation({
             query: (data) => ({
@@ -51,6 +53,14 @@ const authApi = baseApi.injectEndpoints({
                 },
             }),
         }),
+        setPassword: build.mutation({
+            query: (data) => ({
+                url: '/auth/set-password',
+                method: 'POST',
+                data,
+            }),
+            invalidatesTags: ['me'],
+        }),
     }),
 });
 
@@ -61,4 +71,5 @@ export const {
     useForgotPasswordMutation,
     useResetPasswordMutation,
     useRegisterMutation,
+    useSetPasswordMutation,
 } = authApi;

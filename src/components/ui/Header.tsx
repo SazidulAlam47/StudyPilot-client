@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
     Avatar,
     Button,
@@ -78,10 +79,19 @@ const Header = () => {
                                         {user.email}
                                     </span>
                                 </DropdownHeader>
-                                <Link to="/quiz-previous">
-                                    <DropdownItem>Previous Quiz</DropdownItem>
-                                </Link>
-                                <DropdownItem>Change Password</DropdownItem>
+                                {user.hasPassword ? (
+                                    <Link to="/change-password">
+                                        <DropdownItem>
+                                            Change Password
+                                        </DropdownItem>
+                                    </Link>
+                                ) : (
+                                    <Link to="/set-password">
+                                        <DropdownItem>
+                                            Set Password
+                                        </DropdownItem>
+                                    </Link>
+                                )}
                                 <DropdownDivider />
                                 <DropdownItem onClick={handleLogout}>
                                     Sign out
