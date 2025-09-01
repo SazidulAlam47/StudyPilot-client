@@ -25,7 +25,7 @@ const newPasswordSchema = z
     );
 
 export const loginSchema = z.object({
-    email: z.email('Invalid Email'),
+    email: z.string().email('Invalid Email'),
     password: z
         .string({ message: 'Please enter your Password' })
         .min(1, 'Please enter your Password'),
@@ -35,7 +35,7 @@ export const registerSchema = z.object({
     name: z
         .string({ message: 'Please enter your Name' })
         .min(1, 'Please enter your Name'),
-    email: z.email('Invalid Email'),
+    email: z.string().email('Invalid Email'),
     password: newPasswordSchema,
     file: z.any(),
 });
@@ -48,7 +48,7 @@ export const changePasswordSchema = z.object({
 });
 
 export const forgotPasswordSchema = z.object({
-    email: z.email('Invalid Email'),
+    email: z.string().email('Invalid Email'),
 });
 
 export const resetPasswordSchema = z

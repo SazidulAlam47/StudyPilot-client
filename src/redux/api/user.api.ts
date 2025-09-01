@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { IUser } from '../../types';
 import { baseApi } from '../api/baseApi';
 

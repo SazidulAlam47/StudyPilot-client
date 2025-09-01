@@ -1,5 +1,4 @@
-export type TDifficulty = 'easy' | 'medium' | 'hard';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type TResponseSuccessType = {
     data: any;
 };
