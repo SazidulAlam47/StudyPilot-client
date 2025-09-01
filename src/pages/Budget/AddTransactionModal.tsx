@@ -16,7 +16,7 @@ import { createTransactionSchema } from '../../schemas/budget.schema';
 import { toast } from 'sonner';
 import { useCreateTransactionMutation } from '../../redux/api/budgetApi';
 
-const BudgetModal = () => {
+const AddTransactionModal = () => {
     const [openModal, setOpenModal] = useState(false);
 
     const [createTransaction] = useCreateTransactionMutation();
@@ -43,7 +43,7 @@ const BudgetModal = () => {
 
     return (
         <>
-            <Button onClick={() => setOpenModal(true)}>
+            <Button size="xs" onClick={() => setOpenModal(true)}>
                 <HiOutlinePlusSm size={20} /> Add Transaction
             </Button>
             <Modal show={openModal} size="md" onClose={onCloseModal} popup>
@@ -88,4 +88,4 @@ const BudgetModal = () => {
     );
 };
 
-export default BudgetModal;
+export default AddTransactionModal;

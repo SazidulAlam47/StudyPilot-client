@@ -1,17 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { TExam } from '../../types';
+
+import type { TTransaction } from '../../types';
 import { baseApi } from '../api/baseApi';
 
 const budgetApi = baseApi.injectEndpoints({
     endpoints: (build) => ({
-        getMyTransactions: build.query<TExam, any>({
+        getMyTransactions: build.query<TTransaction[], any>({
             query: () => ({
                 url: '/transactions',
                 method: 'GET',
             }),
             providesTags: ['transaction'],
         }),
-        createTransaction: build.mutation<TExam, any>({
+        createTransaction: build.mutation<TTransaction, any>({
             query: (data) => ({
                 url: '/transactions',
                 method: 'POST',

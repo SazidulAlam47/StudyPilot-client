@@ -1,8 +1,18 @@
 import { Spinner } from 'flowbite-react';
+import { cn } from '../utils/cn';
 
-const Loader = () => {
+type LoaderProps = {
+    className?: string;
+};
+
+const Loader = ({ className }: LoaderProps) => {
     return (
-        <div className="min-h-[calc(100dvh-198px)]  flex justify-center items-center">
+        <div
+            className={cn(
+                'min-h-[calc(100dvh-198px)]  flex justify-center items-center',
+                className
+            )}
+        >
             <Spinner size="xl" />
         </div>
     );
