@@ -7,3 +7,12 @@ export type TResponseErrorType = {
     statusCode: number;
     message: string;
 };
+
+export type TDay =
+    | 'Saturday'
+    | 'Sunday'
+    | 'Monday'
+    | 'Tuesday'
+    | 'Wednesday'
+    | 'Thursday'
+    | 'Friday';

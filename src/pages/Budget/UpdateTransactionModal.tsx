@@ -75,6 +75,7 @@ const UpdateTransactionModal = ({
                                 name="date"
                                 label="Date"
                                 maxDate={new Date()}
+                                placeholder="Enter transaction date"
                             />
                             <SInput
                                 name="description"

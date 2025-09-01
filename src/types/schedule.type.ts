@@ -1,11 +1,4 @@
-export type TDay =
-    | 'Saturday'
-    | 'Sunday'
-    | 'Monday'
-    | 'Tuesday'
-    | 'Wednesday'
-    | 'Thursday'
-    | 'Friday';
+import type { TDay } from './common.type';
 
 export type TClass = {
     day: TDay;
