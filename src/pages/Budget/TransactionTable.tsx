@@ -15,6 +15,7 @@ import { MdAccountBalanceWallet } from 'react-icons/md';
 import capitalize from '../../utils/capitalize';
 import TitleText from '../../components/TitleText';
 import AddTransactionModal from './AddTransactionModal';
+import UpdateTransactionModal from './UpdateTransactionModal';
 
 const TransactionTable = () => {
     const { data: transactions, isLoading } =
@@ -53,6 +54,9 @@ const TransactionTable = () => {
                                 </TableHeadCell>
                                 <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
                                     Amount
+                                </TableHeadCell>
+                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                    Action
                                 </TableHeadCell>
                             </TableRow>
                         </TableHead>
@@ -98,6 +102,11 @@ const TransactionTable = () => {
                                             </span>
                                             {transaction.amount}
                                         </span>
+                                    </TableCell>
+                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        <UpdateTransactionModal
+                                            transaction={transaction}
+                                        />
                                     </TableCell>
                                 </TableRow>
                             ))}

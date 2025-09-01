@@ -13,15 +13,26 @@ const budgetApi = baseApi.injectEndpoints({
             providesTags: ['transaction'],
         }),
         createTransaction: build.mutation<TTransaction, any>({
-            query: (data) => ({
+            query: (data: TTransaction) => ({
                 url: '/transactions',
                 method: 'POST',
                 data,
             }),
             invalidatesTags: ['transaction'],
         }),
+        updateTransaction: build.mutation<TTransaction, any>({
+            query: (args: { id: string; data: TTransaction }) => ({
+                url: `/transactions/${args.id}`,
+                method: 'PATCH',
+                data: args.data,
+            }),
+            invalidatesTags: ['transaction'],
+        }),
     }),
 });
 
-export const { useGetMyTransactionsQuery, useCreateTransactionMutation } =
-    budgetApi;
+export const {
+    useGetMyTransactionsQuery,
+    useCreateTransactionMutation,
+    useUpdateTransactionMutation,
+} = budgetApi;

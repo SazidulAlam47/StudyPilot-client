@@ -13,7 +13,6 @@ const Budget = () => {
             />
             <div className="grid grid-cols-1 md:grid-cols-3">
                 <TransactionTable />
-
                 <div></div>
             </div>
         </Container>
