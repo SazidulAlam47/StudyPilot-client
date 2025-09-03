@@ -55,7 +55,7 @@ const CreateStudyGoalModal = () => {
                             <SInput
                                 name="title"
                                 label="Goal"
-                                placeholder="Enter transaction description"
+                                placeholder="Enter you Study Goal"
                             />
                             <SDatePicker
                                 name="targetDate"
