@@ -32,7 +32,6 @@ export default tseslint.config([
       'no-undef': 'error',
       quotes: ['warn', 'single'],
       '@typescript-eslint/no-explicit-any': 'warn',
-
     },
   },
 ])
