@@ -123,7 +123,7 @@ const Exam = () => {
                                 <div key={index} className="space-y-2">
                                     <SRadio
                                         name={index.toString()}
-                                        label={question.text}
+                                        label={`${index + 1}. ` + question.text}
                                         options={question.options}
                                         disabled={
                                             !!exam.submittedAnswers?.length
