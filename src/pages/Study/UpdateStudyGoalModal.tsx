@@ -8,9 +8,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import SDatePicker from '../../components/form/SDatePicker';
 import { useUpdateStudyGoalMutation } from '../../redux/api/studyGoalApi';
-import { createStudyGoalSchema } from '../../schemas/studyGoal.schema';
+import { studyGoalSchema } from '../../schemas/studyGoal.schema';
 import { MdOutlineEdit } from 'react-icons/md';
 import type { TStudyGoal } from '../../types';
+import IconButton from '../../components/IconButton';
 
 type UpdateStudyGoalModalProps = {
     studyGoal: TStudyGoal;
@@ -51,12 +52,9 @@ const UpdateStudyGoalModal = ({ studyGoal }: UpdateStudyGoalModalProps) => {
 
     return (
         <>
-            <button
-                onClick={() => setOpenModal(true)}
-                className="text-blue-600 hover:text-blue-800 transition-colors duration-200 cursor-pointer p-1.5 rounded-full hover:bg-gray-200"
-            >
+         <IconButton onClick={() => setOpenModal(true)}>
                 <MdOutlineEdit size={20} />
-            </button>
+            </IconButton>
             <Modal show={openModal} size="md" onClose={onCloseModal} popup>
                 <ModalHeader className="mt-2">
                     <span className="ml-4">Update New Study Goal</span>
@@ -65,7 +63,7 @@ const UpdateStudyGoalModal = ({ studyGoal }: UpdateStudyGoalModalProps) => {
                     <div className="space-y-6">
                         <SForm
                             onSubmit={handleCreateStudyGoal}
-                            resolver={zodResolver(createStudyGoalSchema)}
+                            resolver={zodResolver(studyGoalSchema)}
                             defaultValues={defaultValues}
                         >
                             <SInput

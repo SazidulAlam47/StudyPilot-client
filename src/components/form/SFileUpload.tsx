@@ -2,12 +2,12 @@ import { useController, useFormContext } from 'react-hook-form';
 import SFormError from './SFormError';
 import { FileInput, Label } from 'flowbite-react';
 
-type UInputProps = {
+type SFileUploadProps = {
     label?: string;
     className?: string;
 };
 
-const SFileUpload = ({ label, className }: UInputProps) => {
+const SFileUpload = ({ label, className }: SFileUploadProps) => {
     const { control, setValue } = useFormContext();
 
     const {

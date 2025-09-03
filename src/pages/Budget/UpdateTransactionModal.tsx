@@ -8,11 +8,12 @@ import SInput from '../../components/form/SInput';
 import SSelect from '../../components/form/SSelect';
 import SDatePicker from '../../components/form/SDatePicker';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createTransactionSchema } from '../../schemas/budget.schema';
+import { transactionSchema } from '../../schemas/budget.schema';
 import { toast } from 'sonner';
 import { useUpdateTransactionMutation } from '../../redux/api/budgetApi';
 import type { TTransaction } from '../../types';
 import { MdOutlineEdit } from 'react-icons/md';
+import IconButton from '../../components/IconButton';
 
 type UpdateTransactionModalProps = {
     transaction: TTransaction;
@@ -54,12 +55,9 @@ const UpdateTransactionModal = ({
 
     return (
         <>
-            <button
-                onClick={() => setOpenModal(true)}
-                className="text-blue-600 hover:text-blue-800 transition-colors duration-200 cursor-pointer p-1.5 rounded-full hover:bg-gray-200"
-            >
+            <IconButton onClick={() => setOpenModal(true)}>
                 <MdOutlineEdit size={20} />
-            </button>
+            </IconButton>
             <Modal show={openModal} size="md" onClose={onCloseModal} popup>
                 <ModalHeader className="mt-2">
                     <span className="ml-4">Update Transaction</span>
@@ -68,7 +66,7 @@ const UpdateTransactionModal = ({
                     <div className="space-y-6">
                         <SForm
                             onSubmit={handleUpdateTransaction}
-                            resolver={zodResolver(createTransactionSchema)}
+                            resolver={zodResolver(transactionSchema)}
                             defaultValues={defaultValues}
                         >
                             <SDatePicker

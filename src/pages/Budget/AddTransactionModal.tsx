@@ -12,7 +12,7 @@ import SInput from '../../components/form/SInput';
 import SSelect from '../../components/form/SSelect';
 import SDatePicker from '../../components/form/SDatePicker';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createTransactionSchema } from '../../schemas/budget.schema';
+import { transactionSchema } from '../../schemas/budget.schema';
 import { toast } from 'sonner';
 import { useCreateTransactionMutation } from '../../redux/api/budgetApi';
 
@@ -54,7 +54,7 @@ const AddTransactionModal = () => {
                     <div className="space-y-6">
                         <SForm
                             onSubmit={handleCreateTransaction}
-                            resolver={zodResolver(createTransactionSchema)}
+                            resolver={zodResolver(transactionSchema)}
                             defaultValues={initialTransaction}
                         >
                             <SDatePicker

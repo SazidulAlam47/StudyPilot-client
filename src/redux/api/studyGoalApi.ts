@@ -48,7 +48,7 @@ const studyGoalApi = baseApi.injectEndpoints({
                 data: Partial<TStudyTask>;
             }) => ({
                 url: `/study-goals/tasks/${args.studyTaskId}`,
-                method: 'POST',
+                method: 'PATCH',
                 data: args.data,
             }),
             invalidatesTags: ['studyGoal'],

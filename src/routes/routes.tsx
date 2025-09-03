@@ -15,6 +15,7 @@ import Schedule from '../pages/Schedule/Schedule';
 import ScheduleEdit from '../pages/Schedule/ScheduleEdit';
 import ChangePass from '../pages/auth/ChangePass';
 import SetPass from '../pages/auth/SetPass';
+import StudyDetails from '../pages/Study/StudyDetails';
 
 const router = createBrowserRouter([
     {
@@ -90,6 +91,14 @@ const router = createBrowserRouter([
                 element: (
                     <ProtectedRoute>
                         <Study />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: '/study/:id',
+                element: (
+                    <ProtectedRoute>
+                        <StudyDetails />
                     </ProtectedRoute>
                 ),
             },

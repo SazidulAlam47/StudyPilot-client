@@ -5,7 +5,7 @@ import moment from 'moment';
 import { useState, useEffect, useRef } from 'react';
 import { MdDateRange } from 'react-icons/md';
 
-type UInputProps = {
+type SDatePickerProps = {
     name: string;
     label?: string;
     disabled?: boolean;
@@ -23,7 +23,7 @@ const SDatePicker = ({
     maxDate,
     minDate,
     placeholder,
-}: UInputProps) => {
+}: SDatePickerProps) => {
     const [showPopup, setShowPopup] = useState(false);
     const datePickerRef = useRef<HTMLDivElement>(null);
 
@@ -65,6 +65,7 @@ const SDatePicker = ({
                         }
                         placeholder={placeholder}
                         onClick={() => setShowPopup(true)}
+                        color={error ? 'failure' : 'gray'}
                         readOnly
                     />
                     {showPopup && (
@@ -76,7 +77,6 @@ const SDatePicker = ({
                             }}
                             id={name}
                             disabled={disabled}
-                            color={error ? 'failure' : 'gray'}
                             maxDate={maxDate}
                             minDate={minDate}
                             inline

@@ -2,7 +2,7 @@ import { Controller } from 'react-hook-form';
 import SFormError from './SFormError';
 import { Label, Select } from 'flowbite-react';
 
-type USelectProps = {
+type SSelectProps = {
     name: string;
     label?: string;
     disabled?: boolean;
@@ -16,7 +16,7 @@ const SSelect = ({
     disabled = false,
     className,
     options,
-}: USelectProps) => {
+}: SSelectProps) => {
     return (
         <Controller
             name={name}

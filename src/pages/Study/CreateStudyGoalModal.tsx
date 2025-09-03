@@ -8,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import SDatePicker from '../../components/form/SDatePicker';
 import { useCreateStudyGoalMutation } from '../../redux/api/studyGoalApi';
-import { createStudyGoalSchema } from '../../schemas/studyGoal.schema';
+import { studyGoalSchema } from '../../schemas/studyGoal.schema';
 
 const CreateStudyGoalModal = () => {
     const [openModal, setOpenModal] = useState(false);
@@ -47,7 +47,7 @@ const CreateStudyGoalModal = () => {
                     <div className="space-y-6">
                         <SForm
                             onSubmit={handleCreateStudyGoal}
-                            resolver={zodResolver(createStudyGoalSchema)}
+                            resolver={zodResolver(studyGoalSchema)}
                         >
                             <SInput
                                 name="title"

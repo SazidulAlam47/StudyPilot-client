@@ -1,7 +1,7 @@
 import moment from 'moment';
 import z from 'zod';
 
-export const createTransactionSchema = z.object({
+export const transactionSchema = z.object({
     date: z.date().transform((date) => moment(date).format('YYYY-MM-DD')),
     description: z.string().min(1, 'Please enter description'),
     amount: z

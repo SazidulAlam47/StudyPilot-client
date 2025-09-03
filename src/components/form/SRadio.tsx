@@ -3,7 +3,7 @@ import SFormError from './SFormError'; // Assuming this is your error display co
 import { Label, Radio } from 'flowbite-react';
 import { cn } from '../../utils/cn';
 
-type URadioProps = {
+type SRadioProps = {
     name: string;
     label?: string;
     className?: string;
@@ -21,7 +21,7 @@ const SRadio = ({
     disabled = false,
     selectedIndex,
     correctAnswer,
-}: URadioProps) => {
+}: SRadioProps) => {
     return (
         <Controller
             name={name}

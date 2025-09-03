@@ -2,7 +2,7 @@ import { Controller } from 'react-hook-form';
 import SFormError from './SFormError';
 import { Label, TextInput } from 'flowbite-react';
 
-type UInputProps = {
+type SInputProps = {
     type?: string;
     placeholder?: string;
     name: string;
@@ -18,7 +18,7 @@ const SInput = ({
     label,
     disabled = false,
     className,
-}: UInputProps) => {
+}: SInputProps) => {
     return (
         <Controller
             name={name}

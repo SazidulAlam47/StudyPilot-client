@@ -15,6 +15,8 @@ import moment from 'moment';
 import { IoDocumentTextOutline } from 'react-icons/io5';
 import CreateStudyGoalModal from './CreateStudyGoalModal';
 import UpdateStudyGoalModal from './UpdateStudyGoalModal';
+import { MdOutlineRemoveRedEye } from 'react-icons/md';
+import IconButton from '../../components/IconButton';
 
 const Study = () => {
     const { data: studyGoals, isLoading } = useGetAllStudyGoalQuery(undefined);
@@ -69,11 +71,12 @@ const Study = () => {
                                             />
                                         </TableCell>
                                         <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                            <Link
-                                                to={`/study/${goal._id}`}
-                                                className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                                            >
-                                                View Details
+                                            <Link to={`/study/${goal._id}`}>
+                                                <IconButton>
+                                                    <MdOutlineRemoveRedEye
+                                                        size={20}
+                                                    />
+                                                </IconButton>
                                             </Link>
                                         </TableCell>
                                     </TableRow>

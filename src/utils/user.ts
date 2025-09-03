@@ -1,17 +1,13 @@
 import { getFromLocalStorage } from './localStorage';
-import { jwtDecode } from 'jwt-decode';
 import { removeFromLocalStorage } from './localStorage';
 import { authKey } from '../constants/auth.constant';
-import type { TDecodedUser } from '../types';
+
 import axiosInstance from '../helpers/axios/axiosInstance';
+import { decodeToken } from './jwt';
 
 export const getUser = () => {
     const token = getFromLocalStorage(authKey);
-
-    if (!token) return null;
-
-    const decoded = jwtDecode(token) as TDecodedUser;
-
+    const decoded = decodeToken(token);
     return decoded;
 };
 

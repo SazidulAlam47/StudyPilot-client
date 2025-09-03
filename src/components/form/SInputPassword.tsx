@@ -4,7 +4,7 @@ import { Label, TextInput } from 'flowbite-react';
 import { useState } from 'react';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 
-type UInputPasswordProps = {
+type SInputPasswordProps = {
     disabled?: boolean;
     className?: string;
 };
@@ -12,7 +12,7 @@ type UInputPasswordProps = {
 const SInputPassword = ({
     disabled = false,
     className,
-}: UInputPasswordProps) => {
+}: SInputPasswordProps) => {
     const [showPassword, setShowPassword] = useState(false);
     return (
         <Controller
