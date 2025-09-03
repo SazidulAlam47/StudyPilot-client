@@ -3,26 +3,31 @@ import { Button, Modal, ModalBody, ModalHeader } from 'flowbite-react';
 import { useState } from 'react';
 import type { FieldValues } from 'react-hook-form';
 import SForm from '../../components/form/SForm';
-import SInput from '../../components/form/SInput';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
-import SDatePicker from '../../components/form/SDatePicker';
-import { useCreateStudyGoalMutation } from '../../redux/api/studyGoalApi';
-import { studyGoalSchema } from '../../schemas/studyGoal.schema';
+import { useGenerateStudyTaskMutation } from '../../redux/api/studyGoalApi';
+import STextArea from '../../components/form/STextArea';
+import { generateStudyGoalSchema } from '../../schemas/studyGoal.schema';
 
-const CreateStudyGoalModal = () => {
+type GenerateStudyTaskModalProps = {
+    studyGoalId: string;
+};
+
+const GenerateStudyTaskModal = ({
+    studyGoalId,
+}: GenerateStudyTaskModalProps) => {
     const [openModal, setOpenModal] = useState(false);
 
-    const [createStudyGoal] = useCreateStudyGoalMutation();
+    const [generateStudyTask] = useGenerateStudyTaskMutation();
 
     const handleCreateStudyGoal = async (data: FieldValues) => {
         setOpenModal(false);
-        const toastId = toast.loading('Creating Study Goal...');
+        const toastId = toast.loading('Generating Study Task...');
 
         try {
-            await createStudyGoal(data).unwrap();
+            await generateStudyTask({ studyGoalId, data }).unwrap();
 
-            toast.success('Study Goal created', {
+            toast.success('Study task generated', {
                 id: toastId,
             });
         } catch (error: any) {
@@ -34,38 +39,33 @@ const CreateStudyGoalModal = () => {
 
     return (
         <>
-            <Button size="xs" onClick={() => setOpenModal(true)}>
-                Create New Study Goal
+            <Button onClick={() => setOpenModal(true)} size="xs">
+                Generate Study Task with AI
             </Button>
             <Modal
                 show={openModal}
-                size="md"
+                size="lg"
                 onClose={() => setOpenModal(false)}
                 popup
             >
                 <ModalHeader className="mt-2">
-                    <span className="ml-4">Create New Study Goal</span>
+                    <span className="ml-4">Generate Study Task</span>
                 </ModalHeader>
                 <ModalBody>
                     <div className="space-y-6">
                         <SForm
                             onSubmit={handleCreateStudyGoal}
-                            resolver={zodResolver(studyGoalSchema)}
+                            resolver={zodResolver(generateStudyGoalSchema)}
                         >
-                            <SInput
-                                name="title"
-                                label="Goal"
-                                placeholder="Enter transaction description"
-                            />
-                            <SDatePicker
-                                name="targetDate"
-                                label="Target Date"
-                                minDate={new Date()}
-                                placeholder="Please Select a target date"
+                            <STextArea
+                                name="prompt"
+                                label="Instructions (Prompt)"
+                                placeholder="Describe your study goal: subject, key topics, syllabus scope, deadline, daily time, current progress, challenges."
+                                rows={6}
                             />
 
                             <Button type="submit" className="w-full">
-                                Create
+                                Generate
                             </Button>
                         </SForm>
                     </div>
@@ -75,4 +75,4 @@ const CreateStudyGoalModal = () => {
     );
 };
 
-export default CreateStudyGoalModal;
+export default GenerateStudyTaskModal;

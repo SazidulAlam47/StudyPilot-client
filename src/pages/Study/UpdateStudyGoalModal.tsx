@@ -23,6 +23,7 @@ const UpdateStudyGoalModal = ({ studyGoal }: UpdateStudyGoalModalProps) => {
     const [updateStudyGoal] = useUpdateStudyGoalMutation();
 
     const handleCreateStudyGoal = async (data: FieldValues) => {
+        setOpenModal(false);
         const toastId = toast.loading('Updating Study Goal...');
 
         try {
@@ -34,16 +35,12 @@ const UpdateStudyGoalModal = ({ studyGoal }: UpdateStudyGoalModalProps) => {
             toast.success('Study Goal updated', {
                 id: toastId,
             });
-            setOpenModal(false);
         } catch (error: any) {
             toast.error(error.message || error.data || 'Something went wrong', {
                 id: toastId,
             });
         }
     };
-    function onCloseModal() {
-        setOpenModal(false);
-    }
 
     const defaultValues = {
         title: studyGoal.title,
@@ -52,10 +49,15 @@ const UpdateStudyGoalModal = ({ studyGoal }: UpdateStudyGoalModalProps) => {
 
     return (
         <>
-         <IconButton onClick={() => setOpenModal(true)}>
+            <IconButton onClick={() => setOpenModal(true)}>
                 <MdOutlineEdit size={20} />
             </IconButton>
-            <Modal show={openModal} size="md" onClose={onCloseModal} popup>
+            <Modal
+                show={openModal}
+                size="md"
+                onClose={() => setOpenModal(false)}
+                popup
+            >
                 <ModalHeader className="mt-2">
                     <span className="ml-4">Update New Study Goal</span>
                 </ModalHeader>

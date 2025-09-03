@@ -22,6 +22,7 @@ const AddTransactionModal = () => {
     const [createTransaction] = useCreateTransactionMutation();
 
     const handleCreateTransaction = async (data: FieldValues) => {
+        setOpenModal(false);
         const toastId = toast.loading('Adding transaction...');
 
         try {
@@ -30,23 +31,24 @@ const AddTransactionModal = () => {
             toast.success('Transaction added', {
                 id: toastId,
             });
-            setOpenModal(false);
         } catch (error: any) {
             toast.error(error.message || error.data || 'Something went wrong', {
                 id: toastId,
             });
         }
     };
-    function onCloseModal() {
-        setOpenModal(false);
-    }
 
     return (
         <>
             <Button size="xs" onClick={() => setOpenModal(true)}>
                 <HiOutlinePlusSm size={20} /> Add Transaction
             </Button>
-            <Modal show={openModal} size="md" onClose={onCloseModal} popup>
+            <Modal
+                show={openModal}
+                size="md"
+                onClose={() => setOpenModal(false)}
+                popup
+            >
                 <ModalHeader className="mt-2">
                     <span className="ml-4">Add new Transaction</span>
                 </ModalHeader>

@@ -60,6 +60,17 @@ const studyGoalApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ['studyGoal'],
         }),
+        generateStudyTask: build.mutation<TStudyTask, any>({
+            query: (args: {
+                studyGoalId: string;
+                data: { prompt: string };
+            }) => ({
+                url: `/study-goals/${args.studyGoalId}/generate-task`,
+                method: 'POST',
+                data: args.data,
+            }),
+            invalidatesTags: ['studyGoal'],
+        }),
     }),
 });
 
@@ -71,4 +82,5 @@ export const {
     useEditStudyTaskMutation,
     useDeleteStudyTaskMutation,
     useUpdateStudyGoalMutation,
+    useGenerateStudyTaskMutation,
 } = studyGoalApi;

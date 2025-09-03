@@ -29,7 +29,6 @@ const DeleteTransactionModal = ({
             toast.success('Transaction deleted', {
                 id: toastId,
             });
-            setOpenModal(false);
         } catch (error: any) {
             toast.error(error.message || error.data || 'Something went wrong', {
                 id: toastId,

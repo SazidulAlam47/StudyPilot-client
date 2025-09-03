@@ -27,6 +27,7 @@ const UpdateTransactionModal = ({
     const [updateTransaction] = useUpdateTransactionMutation();
 
     const handleUpdateTransaction = async (data: FieldValues) => {
+        setOpenModal(false);
         const toastId = toast.loading('Updating transaction...');
 
         try {
@@ -35,16 +36,12 @@ const UpdateTransactionModal = ({
             toast.success('Transaction updated', {
                 id: toastId,
             });
-            setOpenModal(false);
         } catch (error: any) {
             toast.error(error.message || error.data || 'Something went wrong', {
                 id: toastId,
             });
         }
     };
-    function onCloseModal() {
-        setOpenModal(false);
-    }
 
     const defaultValues = {
         date: new Date(transaction.date),
@@ -58,7 +55,12 @@ const UpdateTransactionModal = ({
             <IconButton onClick={() => setOpenModal(true)}>
                 <MdOutlineEdit size={20} />
             </IconButton>
-            <Modal show={openModal} size="md" onClose={onCloseModal} popup>
+            <Modal
+                show={openModal}
+                size="md"
+                onClose={() => setOpenModal(false)}
+                popup
+            >
                 <ModalHeader className="mt-2">
                     <span className="ml-4">Update Transaction</span>
                 </ModalHeader>

@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import Container from '../../components/Container';
 import SectionHeading from '../../components/SectionHeading';
 import {
-    Button,
+    Badge,
     Table,
     TableBody,
     TableCell,
@@ -18,6 +18,8 @@ import { IoDocumentTextOutline } from 'react-icons/io5';
 import AddStudyTaskModal from './AddStudyTaskModal';
 import EditStudyTaskModal from './EditStudyTaskModal';
 import DeleteStudyTaskModal from './DeleteStudyTaskModal';
+import GenerateStudyTaskModal from './GenerateStudyTaskModal';
+import capitalize from '../../utils/capitalize';
 
 const StudyDetails = () => {
     const { id } = useParams();
@@ -95,20 +97,18 @@ const StudyDetails = () => {
                                         {task.topic}
                                     </TableCell>
                                     <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                        <span
-                                            className={`text-xs font-medium px-2.5 py-0.5 rounded ${
+                                        <Badge
+                                            className="w-fit px-2 py-1 rounded-xl"
+                                            color={
                                                 task.priority === 'high'
-                                                    ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
+                                                    ? 'failure'
                                                     : task.priority === 'medium'
-                                                    ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300'
-                                                    : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
-                                            }`}
+                                                    ? 'warning'
+                                                    : 'success'
+                                            }
                                         >
-                                            {task.priority
-                                                .charAt(0)
-                                                .toUpperCase() +
-                                                task.priority.slice(1)}
-                                        </span>
+                                            {capitalize(task.priority)}
+                                        </Badge>
                                     </TableCell>
                                     <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
                                         {moment(task.deadline).format(
@@ -151,9 +151,9 @@ const StudyDetails = () => {
                                 buttonText="Add Study Task Manually"
                                 studyGoalId={studyGoal._id}
                             />
-                            <Button size="xs">
-                                Generate Study Task with AI
-                            </Button>
+                            <GenerateStudyTaskModal
+                                studyGoalId={studyGoal._id}
+                            />
                         </div>
                     )}
                 </div>

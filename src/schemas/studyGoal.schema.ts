@@ -25,3 +25,9 @@ export const studyTaskSchema = z.object({
             message: 'Time slot must be in HH:MM format',
         }),
 });
+
+export const generateStudyGoalSchema = z.object({
+    prompt: z
+        .string({ required_error: 'Please enter your instruction' })
+        .min(5, 'Instruction is too short'),
+});
