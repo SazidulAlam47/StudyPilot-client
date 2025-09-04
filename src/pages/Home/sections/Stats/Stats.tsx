@@ -13,12 +13,16 @@ const StatsSection = () => {
                         academic experience with StudyPilot's comprehensive
                         toolkit for success."
                 />
-                <div className="flex flex-wrap gap-4 p-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
                     {statsData.map((stat, index) => (
                         <StatCard
                             key={index}
                             title={stat.title}
                             value={stat.value}
+                            fullWidth={
+                                statsData.length % 2 === 1 &&
+                                statsData.length === index + 1
+                            }
                         />
                     ))}
                 </div>

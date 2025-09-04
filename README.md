@@ -4,10 +4,6 @@ A modular React + TypeScript application that centralizes core student productiv
 
 Built with **Vite**, **Redux Toolkit + RTK Query**, **React Hook Form + Zod**, **TailwindCSS**, and **Firebase Authentication**.
 
-<!-- ##  Presentation Video
-
-Presentation Video: https://your-video-link.example.com -->
-
 ## Overview
 
 StudyPilot is a comprehensive student productivity platform. This repository contains the **frontend client**. It delivers a cohesive user experience for tracking classes, managing finances, generating exam practice questions, and breaking large study goals into actionable tasks.
@@ -157,3 +153,9 @@ pnpm dev
 # 4. Open
 http://localhost:5173
 ```
+
+## Presentation Video
+
+Presentation Video: https://youtu.be/qQhIdA_wL1o
+
+[![Demonstration Video](https://img.youtube.com/vi/qQhIdA_wL1o/0.jpg)](https://youtu.be/qQhIdA_wL1o)

@@ -8,9 +8,9 @@ import { Button } from 'flowbite-react';
 const Hero = () => {
     return (
         <Container asChild>
-            <div className="flex flex-col gap-6 px-4 py-10 sm:gap-8 lg:flex-row">
+            <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-3 pb-10 md:py-10 ">
                 <div className="min-w-fit">
-                    <img src={heroImage} alt="students" />
+                    <img src={heroImage} alt="students" className="mx-auto" />
                 </div>
                 <div className="flex flex-col gap-6 sm:min-w-[400px] sm:gap-8 lg:justify-center">
                     <div className="flex flex-col gap-2 text-left">
