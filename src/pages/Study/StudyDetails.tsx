@@ -15,11 +15,11 @@ import {
 } from 'flowbite-react';
 import moment from 'moment';
 import { IoDocumentTextOutline } from 'react-icons/io5';
-import AddStudyTaskModal from './AddStudyTaskModal';
-import EditStudyTaskModal from './EditStudyTaskModal';
-import DeleteStudyTaskModal from './DeleteStudyTaskModal';
-import GenerateStudyTaskModal from './GenerateStudyTaskModal';
 import capitalize from '../../utils/capitalize';
+import AddStudyTaskModal from './modals/AddStudyTaskModal';
+import EditStudyTaskModal from './modals/EditStudyTaskModal';
+import DeleteStudyTaskModal from './modals/DeleteStudyTaskModal';
+import GenerateStudyTaskModal from './modals/GenerateStudyTaskModal';
 
 const StudyDetails = () => {
     const { id } = useParams();
@@ -43,6 +43,7 @@ const StudyDetails = () => {
 
     return (
         <Container className="min-h-[calc(100dvh-198px)] my-10">
+            <title>StudyPilot - Study Tasks</title>
             <SectionHeading
                 title={
                     studyGoal
@@ -52,7 +53,7 @@ const StudyDetails = () => {
                 subTitle={
                     studyGoal
                         ? `Target Date: ${moment(studyGoal.targetDate).format(
-                              'Do MMM, YYYY'
+                              'Do MMM, YYYY',
                           )}`
                         : 'View and manage your study goal progress and tasks'
                 }
@@ -103,8 +104,8 @@ const StudyDetails = () => {
                                                 task.priority === 'high'
                                                     ? 'failure'
                                                     : task.priority === 'medium'
-                                                    ? 'warning'
-                                                    : 'success'
+                                                      ? 'warning'
+                                                      : 'success'
                                             }
                                         >
                                             {capitalize(task.priority)}
@@ -112,7 +113,7 @@ const StudyDetails = () => {
                                     </TableCell>
                                     <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
                                         {moment(task.deadline).format(
-                                            'Do MMM, YY'
+                                            'Do MMM, YY',
                                         )}
                                     </TableCell>
                                     <TableCell className="px-2 py-2 sm:px-4 sm:py-3">

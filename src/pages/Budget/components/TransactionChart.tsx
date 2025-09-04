@@ -1,6 +1,6 @@
 import { Chart } from 'react-google-charts';
 import { MdPieChart } from 'react-icons/md';
-import type { TTransactionStats } from '../../types';
+import type { TTransactionStats } from '../../../types';
 
 type TransactionChartProps = {
     stats?: TTransactionStats;

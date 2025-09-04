@@ -108,6 +108,7 @@ const Exam = () => {
 
     return (
         <Container className="py-12 max-w-7xl mx-auto">
+            <title>StudyPilot - Quiz</title>
             <TitleText className="mb-10">
                 Challenge Your Knowledge: Take the Quiz!
             </TitleText>

@@ -2,40 +2,42 @@
 import { Button, Modal, ModalBody, ModalHeader } from 'flowbite-react';
 import { useState } from 'react';
 import type { FieldValues } from 'react-hook-form';
-import SForm from '../../components/form/SForm';
-import SInput from '../../components/form/SInput';
+import SForm from '../../../components/form/SForm';
+import SInput from '../../../components/form/SInput';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
-import SDatePicker from '../../components/form/SDatePicker';
-import { useEditStudyTaskMutation } from '../../redux/api/studyGoalApi';
-import { studyTaskSchema } from '../../schemas/studyGoal.schema';
-import SSelect from '../../components/form/SSelect';
+import SDatePicker from '../../../components/form/SDatePicker';
+import { useAddStudyTaskMutation } from '../../../redux/api/studyGoalApi';
+import { studyTaskSchema } from '../../../schemas/studyGoal.schema';
+import SSelect from '../../../components/form/SSelect';
 import {
+    studyTaskDefaultValues,
     daysOptions,
     priorityOptions,
-} from '../../constants/studyGoal.constant';
-import SCheckBox from '../../components/form/SCheckBox';
-import IconButton from '../../components/IconButton';
-import { MdOutlineEdit } from 'react-icons/md';
-import type { TStudyTask } from '../../types';
+} from '../../../constants/studyGoal.constant';
+import SCheckBox from '../../../components/form/SCheckBox';
 
-type EditTaskGoalModalProps = {
-    studyTask: TStudyTask;
+type AddTaskGoalModalProps = {
+    studyGoalId: string;
+    buttonText: string;
 };
 
-const EditStudyTaskModal = ({ studyTask }: EditTaskGoalModalProps) => {
+const AddStudyTaskModal = ({
+    studyGoalId,
+    buttonText,
+}: AddTaskGoalModalProps) => {
     const [openModal, setOpenModal] = useState(false);
 
-    const [editStudyTask] = useEditStudyTaskMutation();
+    const [addStudyTask] = useAddStudyTaskMutation();
 
     const handleCreateStudyGoal = async (data: FieldValues) => {
         setOpenModal(false);
-        const toastId = toast.loading('Updating Study Task...');
+        const toastId = toast.loading('Adding Study Task...');
 
         try {
-            await editStudyTask({ studyTaskId: studyTask._id, data }).unwrap();
+            await addStudyTask({ studyGoalId, data }).unwrap();
 
-            toast.success('Study task updated', {
+            toast.success('Study task added', {
                 id: toastId,
             });
         } catch (error: any) {
@@ -45,16 +47,11 @@ const EditStudyTaskModal = ({ studyTask }: EditTaskGoalModalProps) => {
         }
     };
 
-    const defaultValues = {
-        ...studyTask,
-        deadline: new Date(studyTask.deadline),
-    };
-
     return (
         <>
-            <IconButton onClick={() => setOpenModal(true)}>
-                <MdOutlineEdit size={20} />
-            </IconButton>
+            <Button size="xs" onClick={() => setOpenModal(true)}>
+                {buttonText}
+            </Button>
             <Modal
                 show={openModal}
                 size="md"
@@ -62,14 +59,14 @@ const EditStudyTaskModal = ({ studyTask }: EditTaskGoalModalProps) => {
                 popup
             >
                 <ModalHeader className="mt-2">
-                    <span className="ml-4">Update Study Task</span>
+                    <span className="ml-4">Add Study Task</span>
                 </ModalHeader>
                 <ModalBody>
                     <div className="space-y-6">
                         <SForm
                             onSubmit={handleCreateStudyGoal}
                             resolver={zodResolver(studyTaskSchema)}
-                            defaultValues={defaultValues}
+                            defaultValues={studyTaskDefaultValues}
                         >
                             <SInput
                                 name="topic"
@@ -99,7 +96,7 @@ const EditStudyTaskModal = ({ studyTask }: EditTaskGoalModalProps) => {
                                 placeholder="HH:MM"
                             />
                             <Button type="submit" className="w-full">
-                                Update
+                                Add
                             </Button>
                         </SForm>
                     </div>
@@ -109,4 +106,4 @@ const EditStudyTaskModal = ({ studyTask }: EditTaskGoalModalProps) => {
     );
 };
 
-export default EditStudyTaskModal;
+export default AddStudyTaskModal;

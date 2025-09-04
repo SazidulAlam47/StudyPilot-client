@@ -30,6 +30,7 @@ const ChangePass = () => {
 
     return (
         <Container className="min-h-[calc(100dvh-198px)] flex justify-center items-center py-10">
+            <title>StudyPilot - Change Password</title>
             <div className="w-full max-w-md mx-auto">
                 <div className="text-center mb-4">
                     <h1 className="text-[#111418] text-3xl font-bold leading-tight mb-2">

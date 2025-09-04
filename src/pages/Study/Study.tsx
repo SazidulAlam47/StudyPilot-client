@@ -13,10 +13,10 @@ import {
 } from 'flowbite-react';
 import moment from 'moment';
 import { IoDocumentTextOutline } from 'react-icons/io5';
-import CreateStudyGoalModal from './CreateStudyGoalModal';
-import UpdateStudyGoalModal from './UpdateStudyGoalModal';
 import { MdOutlineRemoveRedEye } from 'react-icons/md';
 import IconButton from '../../components/IconButton';
+import CreateStudyGoalModal from './modals/CreateStudyGoalModal';
+import UpdateStudyGoalModal from './modals/UpdateStudyGoalModal';
 
 const Study = () => {
     const { data: studyGoals, isLoading } = useGetAllStudyGoalQuery(undefined);
@@ -25,6 +25,7 @@ const Study = () => {
 
     return (
         <Container className="min-h-[calc(100dvh-198px)] my-10">
+            <title>StudyPilot - Study Planner</title>
             <SectionHeading
                 title="Study Goals & Tasks"
                 subTitle="Manage your study goals and track your learning progress"
@@ -62,7 +63,7 @@ const Study = () => {
                                         </TableCell>
                                         <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
                                             {moment(goal.targetDate).format(
-                                                'Do MMM, YY'
+                                                'Do MMM, YY',
                                             )}
                                         </TableCell>
                                         <TableCell className="px-2 py-2 sm:px-4 sm:py-3">

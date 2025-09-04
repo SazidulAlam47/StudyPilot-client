@@ -35,10 +35,10 @@ const ScheduleEdit = () => {
     const { data: schedule, isLoading } = useGetMyScheduleQuery(undefined);
 
     const [timeSlots, setTimeSlots] = useState<string[]>(
-        schedule?.timeSlots || initialTimeSlots
+        schedule?.timeSlots || initialTimeSlots,
     );
     const [classes, setClasses] = useState<TClass[]>(
-        schedule?.classes || initialClasses
+        schedule?.classes || initialClasses,
     );
 
     useEffect(() => {
@@ -101,6 +101,7 @@ const ScheduleEdit = () => {
 
     return (
         <Container className="min-h-[calc(100dvh-198px)] my-10">
+            <title>StudyPilot - Edit Schedule</title>
             <SectionHeading
                 title="Edit Weekly Class Schedule"
                 subTitle="Update your classes and manage your weekly schedule"

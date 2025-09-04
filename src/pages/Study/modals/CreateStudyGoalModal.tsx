@@ -2,13 +2,13 @@
 import { Button, Modal, ModalBody, ModalHeader } from 'flowbite-react';
 import { useState } from 'react';
 import type { FieldValues } from 'react-hook-form';
-import SForm from '../../components/form/SForm';
-import SInput from '../../components/form/SInput';
+import SForm from '../../../components/form/SForm';
+import SInput from '../../../components/form/SInput';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
-import SDatePicker from '../../components/form/SDatePicker';
-import { useCreateStudyGoalMutation } from '../../redux/api/studyGoalApi';
-import { studyGoalSchema } from '../../schemas/studyGoal.schema';
+import SDatePicker from '../../../components/form/SDatePicker';
+import { useCreateStudyGoalMutation } from '../../../redux/api/studyGoalApi';
+import { studyGoalSchema } from '../../../schemas/studyGoal.schema';
 
 const CreateStudyGoalModal = () => {
     const [openModal, setOpenModal] = useState(false);

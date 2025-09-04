@@ -1,6 +1,6 @@
-import Container from '../../components/Container';
-import Loader from '../../components/Loader';
-import { useGetMyTransactionsQuery } from '../../redux/api/budgetApi';
+import Container from '../../../components/Container';
+import Loader from '../../../components/Loader';
+import { useGetMyTransactionsQuery } from '../../../redux/api/budgetApi';
 import {
     Badge,
     Table,
@@ -12,13 +12,13 @@ import {
 } from 'flowbite-react';
 import moment from 'moment';
 import { MdAccountBalanceWallet } from 'react-icons/md';
-import capitalize from '../../utils/capitalize';
-import TitleText from '../../components/TitleText';
-import AddTransactionModal from './AddTransactionModal';
-import UpdateTransactionModal from './UpdateTransactionModal';
-import DeleteTransactionModal from './DeleteTransactionModal';
+import capitalize from '../../../utils/capitalize';
+import TitleText from '../../../components/TitleText';
+import AddTransactionModal from '../modals/AddTransactionModal';
+import UpdateTransactionModal from '../modals/UpdateTransactionModal';
+import DeleteTransactionModal from '../modals/DeleteTransactionModal';
 import { TbCurrencyTaka } from 'react-icons/tb';
-import { cn } from '../../utils/cn';
+import { cn } from '../../../utils/cn';
 
 const TransactionHistory = () => {
     const { data: transactions, isLoading } =
@@ -71,7 +71,7 @@ const TransactionHistory = () => {
                                 >
                                     <TableCell className="px-2 py-2 sm:px-4 sm:py-3 whitespace-nowrap font-medium text-gray-900 dark:text-white">
                                         {moment(transaction.date).format(
-                                            'Do MMM, YYYY'
+                                            'Do MMM, YYYY',
                                         )}
                                     </TableCell>
                                     <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
@@ -100,7 +100,7 @@ const TransactionHistory = () => {
                                                     'text-red-600':
                                                         transaction.tnxType ===
                                                         'outflow',
-                                                }
+                                                },
                                             )}
                                         >
                                             <TbCurrencyTaka />

@@ -54,6 +54,7 @@ const Schedule = () => {
 
     return (
         <Container className="min-h-[calc(100dvh-198px)] my-10">
+            <title>StudyPilot - My Schedule</title>
             <SectionHeading
                 title="Weekly Class Schedule"
                 subTitle="Stay on track with your classes at a glance"

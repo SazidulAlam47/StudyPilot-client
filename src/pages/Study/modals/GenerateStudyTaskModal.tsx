@@ -2,12 +2,12 @@
 import { Button, Modal, ModalBody, ModalHeader } from 'flowbite-react';
 import { useState } from 'react';
 import type { FieldValues } from 'react-hook-form';
-import SForm from '../../components/form/SForm';
+import SForm from '../../../components/form/SForm';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
-import { useGenerateStudyTaskMutation } from '../../redux/api/studyGoalApi';
-import STextArea from '../../components/form/STextArea';
-import { generateStudyGoalSchema } from '../../schemas/studyGoal.schema';
+import { useGenerateStudyTaskMutation } from '../../../redux/api/studyGoalApi';
+import STextArea from '../../../components/form/STextArea';
+import { generateStudyGoalSchema } from '../../../schemas/studyGoal.schema';
 
 type GenerateStudyTaskModalProps = {
     studyGoalId: string;

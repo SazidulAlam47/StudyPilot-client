@@ -22,6 +22,7 @@ const PreviousExams = () => {
 
     return (
         <Container className="min-h-[calc(100dvh-198px)]  my-10">
+            <title>StudyPilot - Previous Quiz</title>
             <SectionHeading
                 title="Recent Quiz Results"
                 subTitle="Review your latest exam scores and track your progress over time"
@@ -90,12 +91,12 @@ const PreviousExams = () => {
                                     </TableCell>
                                     <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
                                         {moment(exam.createdAt).format(
-                                            'h:mm A'
+                                            'h:mm A',
                                         )}
                                     </TableCell>
                                     <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
                                         {moment(exam.createdAt).format(
-                                            'Do MMM, YY'
+                                            'Do MMM, YY',
                                         )}
                                     </TableCell>
                                     <TableCell className="px-2 py-2 sm:px-4 sm:py-3">

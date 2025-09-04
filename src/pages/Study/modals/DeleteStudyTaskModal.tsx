@@ -2,31 +2,29 @@
 import { Button, Modal, ModalBody, ModalHeader } from 'flowbite-react';
 import { useState } from 'react';
 import { HiOutlineExclamationCircle } from 'react-icons/hi';
-import type { TTransaction } from '../../types';
+import type { TStudyTask } from '../../../types';
 import { MdOutlineDelete } from 'react-icons/md';
-import { useDeleteTransactionMutation } from '../../redux/api/budgetApi';
 import { toast } from 'sonner';
-import IconButton from '../../components/IconButton';
+import { useDeleteStudyTaskMutation } from '../../../redux/api/studyGoalApi';
+import IconButton from '../../../components/IconButton';
 
-type DeleteTransactionModalProps = {
-    transaction: TTransaction;
+type DeleteStudyTaskModalProps = {
+    studyTask: TStudyTask;
 };
 
-const DeleteTransactionModal = ({
-    transaction,
-}: DeleteTransactionModalProps) => {
+const DeleteStudyTaskModal = ({ studyTask }: DeleteStudyTaskModalProps) => {
     const [openModal, setOpenModal] = useState(false);
 
-    const [deleteTransaction] = useDeleteTransactionMutation();
+    const [deleteStudyTask] = useDeleteStudyTaskMutation();
 
     const handleDeleteTransaction = async () => {
         setOpenModal(false);
-        const toastId = toast.loading('Deleting transaction...');
+        const toastId = toast.loading('Deleting study task...');
 
         try {
-            await deleteTransaction(transaction._id).unwrap();
+            await deleteStudyTask(studyTask._id).unwrap();
 
-            toast.success('Transaction deleted', {
+            toast.success('Study task deleted', {
                 id: toastId,
             });
         } catch (error: any) {
@@ -55,7 +53,7 @@ const DeleteTransactionModal = ({
                     <div className="text-center">
                         <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
                         <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                            Are you sure you want to delete this Transaction?
+                            Are you sure you want to delete this Task?
                         </h3>
                         <div className="flex justify-center gap-4">
                             <Button
@@ -78,4 +76,4 @@ const DeleteTransactionModal = ({
     );
 };
 
-export default DeleteTransactionModal;
+export default DeleteStudyTaskModal;

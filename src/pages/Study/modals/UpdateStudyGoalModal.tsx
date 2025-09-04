@@ -2,16 +2,16 @@
 import { Button, Modal, ModalBody, ModalHeader } from 'flowbite-react';
 import { useState } from 'react';
 import type { FieldValues } from 'react-hook-form';
-import SForm from '../../components/form/SForm';
-import SInput from '../../components/form/SInput';
+import SForm from '../../../components/form/SForm';
+import SInput from '../../../components/form/SInput';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
-import SDatePicker from '../../components/form/SDatePicker';
-import { useUpdateStudyGoalMutation } from '../../redux/api/studyGoalApi';
-import { studyGoalSchema } from '../../schemas/studyGoal.schema';
+import SDatePicker from '../../../components/form/SDatePicker';
+import { useUpdateStudyGoalMutation } from '../../../redux/api/studyGoalApi';
+import { studyGoalSchema } from '../../../schemas/studyGoal.schema';
 import { MdOutlineEdit } from 'react-icons/md';
-import type { TStudyGoal } from '../../types';
-import IconButton from '../../components/IconButton';
+import type { TStudyGoal } from '../../../types';
+import IconButton from '../../../components/IconButton';
 
 type UpdateStudyGoalModalProps = {
     studyGoal: TStudyGoal;

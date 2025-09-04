@@ -1,39 +1,34 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Modal, ModalBody, ModalHeader } from 'flowbite-react';
 import { useState } from 'react';
-import { tnxTypeOptions } from '../../constants/budget.constant';
+import { HiOutlinePlusSm } from 'react-icons/hi';
+import {
+    initialTransaction,
+    tnxTypeOptions,
+} from '../../../constants/budget.constant';
 import type { FieldValues } from 'react-hook-form';
-import SForm from '../../components/form/SForm';
-import SInput from '../../components/form/SInput';
-import SSelect from '../../components/form/SSelect';
-import SDatePicker from '../../components/form/SDatePicker';
+import SForm from '../../../components/form/SForm';
+import SInput from '../../../components/form/SInput';
+import SSelect from '../../../components/form/SSelect';
+import SDatePicker from '../../../components/form/SDatePicker';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { transactionSchema } from '../../schemas/budget.schema';
+import { transactionSchema } from '../../../schemas/budget.schema';
 import { toast } from 'sonner';
-import { useUpdateTransactionMutation } from '../../redux/api/budgetApi';
-import type { TTransaction } from '../../types';
-import { MdOutlineEdit } from 'react-icons/md';
-import IconButton from '../../components/IconButton';
+import { useCreateTransactionMutation } from '../../../redux/api/budgetApi';
 
-type UpdateTransactionModalProps = {
-    transaction: TTransaction;
-};
-
-const UpdateTransactionModal = ({
-    transaction,
-}: UpdateTransactionModalProps) => {
+const AddTransactionModal = () => {
     const [openModal, setOpenModal] = useState(false);
 
-    const [updateTransaction] = useUpdateTransactionMutation();
+    const [createTransaction] = useCreateTransactionMutation();
 
-    const handleUpdateTransaction = async (data: FieldValues) => {
+    const handleCreateTransaction = async (data: FieldValues) => {
         setOpenModal(false);
-        const toastId = toast.loading('Updating transaction...');
+        const toastId = toast.loading('Adding transaction...');
 
         try {
-            await updateTransaction({ id: transaction._id, data }).unwrap();
+            await createTransaction(data).unwrap();
 
-            toast.success('Transaction updated', {
+            toast.success('Transaction added', {
                 id: toastId,
             });
         } catch (error: any) {
@@ -43,18 +38,11 @@ const UpdateTransactionModal = ({
         }
     };
 
-    const defaultValues = {
-        date: new Date(transaction.date),
-        description: transaction.description,
-        amount: transaction.amount.toString(),
-        tnxType: transaction.tnxType,
-    };
-
     return (
         <>
-            <IconButton onClick={() => setOpenModal(true)}>
-                <MdOutlineEdit size={20} />
-            </IconButton>
+            <Button size="xs" onClick={() => setOpenModal(true)}>
+                <HiOutlinePlusSm size={20} /> Add Transaction
+            </Button>
             <Modal
                 show={openModal}
                 size="md"
@@ -62,14 +50,14 @@ const UpdateTransactionModal = ({
                 popup
             >
                 <ModalHeader className="mt-2">
-                    <span className="ml-4">Update Transaction</span>
+                    <span className="ml-4">Add new Transaction</span>
                 </ModalHeader>
                 <ModalBody>
                     <div className="space-y-6">
                         <SForm
-                            onSubmit={handleUpdateTransaction}
+                            onSubmit={handleCreateTransaction}
                             resolver={zodResolver(transactionSchema)}
-                            defaultValues={defaultValues}
+                            defaultValues={initialTransaction}
                         >
                             <SDatePicker
                                 name="date"
@@ -93,7 +81,7 @@ const UpdateTransactionModal = ({
                                 options={tnxTypeOptions}
                             />
                             <Button type="submit" className="w-full">
-                                Update
+                                Add
                             </Button>
                         </SForm>
                     </div>
@@ -103,4 +91,4 @@ const UpdateTransactionModal = ({
     );
 };
 
-export default UpdateTransactionModal;
+export default AddTransactionModal;

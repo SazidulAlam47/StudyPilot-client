@@ -1,5 +1,5 @@
-import Container from '../../components/Container';
-import TitleText from '../../components/TitleText';
+import Container from '../../../components/Container';
+import TitleText from '../../../components/TitleText';
 import {
     Table,
     TableBody,
@@ -8,9 +8,9 @@ import {
     TableHeadCell,
     TableRow,
 } from 'flowbite-react';
-import type { TTransactionStats } from '../../types';
+import type { TTransactionStats } from '../../../types';
 import { TbCurrencyTaka } from 'react-icons/tb';
-import { cn } from '../../utils/cn';
+import { cn } from '../../../utils/cn';
 
 type TransactionStatsProps = {
     stats?: TTransactionStats;
@@ -79,7 +79,7 @@ const TransactionStats = ({ stats }: TransactionStatsProps) => {
                                                     stat.type === 'outflow',
                                                 'text-gray-900':
                                                     stat.type === 'balance',
-                                            }
+                                            },
                                         )}
                                     >
                                         <TbCurrencyTaka />

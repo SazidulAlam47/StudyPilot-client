@@ -40,6 +40,7 @@ const ExamInput = () => {
     };
     return (
         <Container className="min-h-[calc(100dvh-198px)] flex justify-center items-center py-10">
+            <title>StudyPilot - AI Quiz</title>
             <div className="w-full max-w-md mx-auto">
                 <SectionHeading
                     title="Start Your AI-Generated Exam"

@@ -1,11 +1,11 @@
 import Container from '../../components/Container';
 import SectionHeading from '../../components/SectionHeading';
-import TransactionStats from './TransactionStats';
+import TransactionStats from './components/TransactionStats';
 
-import TransactionHistory from './TransactionHistory';
+import TransactionHistory from './components/TransactionHistory';
 import { useGetTransactionStatsQuery } from '../../redux/api/budgetApi';
 import Loader from '../../components/Loader';
-import TransactionChart from './TransactionChart';
+import TransactionChart from './components/TransactionChart';
 
 const Budget = () => {
     const { data: stats, isLoading } = useGetTransactionStatsQuery(undefined);
@@ -14,6 +14,7 @@ const Budget = () => {
     }
     return (
         <Container className="min-h-[calc(100dvh-198px)] py-10">
+            <title>StudyPilot - Budget Manager</title>
             <SectionHeading
                 title="Budget Manager"
                 subTitle="Stay on top of your finances by tracking income, expenses, and savings"
