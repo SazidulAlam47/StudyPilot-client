@@ -94,7 +94,7 @@ const Register = () => {
                         placeholder="Enter your email"
                     />
                     <SInputPassword />
-                    <SFileUpload label="Profile Photo" />
+                    <SFileUpload label="Profile Photo (Optional)" />
                     <Button type="submit" className="w-full">
                         Register
                     </Button>
