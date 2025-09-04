@@ -13,8 +13,8 @@ const HowItWorks = () => {
                     subTitle="Get started with StudyPilot in just three simple steps
                         and transform your academic journey today."
                 />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 items-center mt-10">
-                    <div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-3 items-center mt-10">
+                    <div className="order-2 md:order-1">
                         {stepsData.map((step, index) => (
                             <Step
                                 key={index}
@@ -25,7 +25,7 @@ const HowItWorks = () => {
                             />
                         ))}
                     </div>
-                    <div>
+                    <div className="order-1 md:order-2">
                         <img
                             src={howItWorksImage}
                             alt="How StudyPilot Works"
