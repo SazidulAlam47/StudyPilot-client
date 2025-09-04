@@ -32,59 +32,61 @@ const Study = () => {
             {isLoading ? (
                 <Loader />
             ) : studyGoals?.length ? (
-                <div className="overflow-x-auto rounded-md space-y-3">
+                <div className="space-y-3">
                     <CreateStudyGoalModal />
-                    <Table className="text-xs sm:text-base" hoverable>
-                        <TableHead>
-                            <TableRow>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Goal Title
-                                </TableHeadCell>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Target Date
-                                </TableHeadCell>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Edit
-                                </TableHeadCell>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Details
-                                </TableHeadCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody className="divide-y divide-gray-200">
-                            {studyGoals?.map((goal) => {
-                                return (
-                                    <TableRow
-                                        key={goal._id}
-                                        className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                                    >
-                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3 whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                            {goal.title}
-                                        </TableCell>
-                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                            {moment(goal.targetDate).format(
-                                                'Do MMM, YY',
-                                            )}
-                                        </TableCell>
-                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                            <UpdateStudyGoalModal
-                                                studyGoal={goal}
-                                            />
-                                        </TableCell>
-                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                            <Link to={`/study/${goal._id}`}>
-                                                <IconButton>
-                                                    <MdOutlineRemoveRedEye
-                                                        size={20}
-                                                    />
-                                                </IconButton>
-                                            </Link>
-                                        </TableCell>
-                                    </TableRow>
-                                );
-                            })}
-                        </TableBody>
-                    </Table>
+                    <div className="overflow-x-auto rounded-md">
+                        <Table className="text-xs sm:text-base" hoverable>
+                            <TableHead>
+                                <TableRow>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Goal Title
+                                    </TableHeadCell>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Target Date
+                                    </TableHeadCell>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Edit
+                                    </TableHeadCell>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Details
+                                    </TableHeadCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody className="divide-y divide-gray-200">
+                                {studyGoals?.map((goal) => {
+                                    return (
+                                        <TableRow
+                                            key={goal._id}
+                                            className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                                        >
+                                            <TableCell className="px-2 py-2 sm:px-4 sm:py-3 whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                                {goal.title}
+                                            </TableCell>
+                                            <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                                {moment(goal.targetDate).format(
+                                                    'Do MMM, YY',
+                                                )}
+                                            </TableCell>
+                                            <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                                <UpdateStudyGoalModal
+                                                    studyGoal={goal}
+                                                />
+                                            </TableCell>
+                                            <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                                <Link to={`/study/${goal._id}`}>
+                                                    <IconButton>
+                                                        <MdOutlineRemoveRedEye
+                                                            size={20}
+                                                        />
+                                                    </IconButton>
+                                                </Link>
+                                            </TableCell>
+                                        </TableRow>
+                                    );
+                                })}
+                            </TableBody>
+                        </Table>
+                    </div>
                 </div>
             ) : (
                 <div className="min-h-[40dvh] rounded-lg flex flex-col justify-center items-center text-center p-8">

@@ -33,84 +33,89 @@ const TransactionHistory = () => {
             {isLoading ? (
                 <Loader className="min-h-[40dvh]" />
             ) : transactions?.length ? (
-                <div className="overflow-x-auto rounded-md space-y-3">
+                <div className="space-y-3">
                     <AddTransactionModal />
-                    <Table className="text-xs sm:text-base" hoverable>
-                        <TableHead>
-                            <TableRow>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Date
-                                </TableHeadCell>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Description
-                                </TableHeadCell>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Type
-                                </TableHeadCell>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Amount
-                                </TableHeadCell>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Action
-                                </TableHeadCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody className="divide-y divide-gray-200">
-                            {transactions?.map((transaction) => (
-                                <TableRow
-                                    key={transaction._id}
-                                    className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                                >
-                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3 whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                        {moment(transaction.date).format(
-                                            'Do MMM, YYYY',
-                                        )}
-                                    </TableCell>
-                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                        {transaction.description}
-                                    </TableCell>
-                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                        <Badge
-                                            color={
-                                                transaction.tnxType === 'inflow'
-                                                    ? 'success'
-                                                    : 'failure'
-                                            }
-                                            className="w-fit px-2 py-1 rounded-xl"
-                                        >
-                                            {capitalize(transaction.tnxType)}
-                                        </Badge>
-                                    </TableCell>
-                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                        <span
-                                            className={cn(
-                                                'font-semibold flex items-center',
-                                                {
-                                                    'text-green-600':
-                                                        transaction.tnxType ===
-                                                        'inflow',
-                                                    'text-red-600':
-                                                        transaction.tnxType ===
-                                                        'outflow',
-                                                },
-                                            )}
-                                        >
-                                            <TbCurrencyTaka />
-                                            {transaction.amount.toLocaleString()}
-                                        </span>
-                                    </TableCell>
-                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3 flex items-center">
-                                        <UpdateTransactionModal
-                                            transaction={transaction}
-                                        />
-                                        <DeleteTransactionModal
-                                            transaction={transaction}
-                                        />
-                                    </TableCell>
+                    <div className="overflow-x-auto rounded-md">
+                        <Table className="text-xs sm:text-base" hoverable>
+                            <TableHead>
+                                <TableRow>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Date
+                                    </TableHeadCell>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Description
+                                    </TableHeadCell>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Type
+                                    </TableHeadCell>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Amount
+                                    </TableHeadCell>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Action
+                                    </TableHeadCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                            </TableHead>
+                            <TableBody className="divide-y divide-gray-200">
+                                {transactions?.map((transaction) => (
+                                    <TableRow
+                                        key={transaction._id}
+                                        className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                                    >
+                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3 whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                            {moment(transaction.date).format(
+                                                'Do MMM, YYYY',
+                                            )}
+                                        </TableCell>
+                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                            {transaction.description}
+                                        </TableCell>
+                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                            <Badge
+                                                color={
+                                                    transaction.tnxType ===
+                                                    'inflow'
+                                                        ? 'success'
+                                                        : 'failure'
+                                                }
+                                                className="w-fit px-2 py-1 rounded-xl"
+                                            >
+                                                {capitalize(
+                                                    transaction.tnxType,
+                                                )}
+                                            </Badge>
+                                        </TableCell>
+                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                            <span
+                                                className={cn(
+                                                    'font-semibold flex items-center',
+                                                    {
+                                                        'text-green-600':
+                                                            transaction.tnxType ===
+                                                            'inflow',
+                                                        'text-red-600':
+                                                            transaction.tnxType ===
+                                                            'outflow',
+                                                    },
+                                                )}
+                                            >
+                                                <TbCurrencyTaka />
+                                                {transaction.amount.toLocaleString()}
+                                            </span>
+                                        </TableCell>
+                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3 flex items-center">
+                                            <UpdateTransactionModal
+                                                transaction={transaction}
+                                            />
+                                            <DeleteTransactionModal
+                                                transaction={transaction}
+                                            />
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </div>
                 </div>
             ) : (
                 <div className="min-h-[40dvh] rounded-lg flex flex-col justify-center items-center text-center p-8">

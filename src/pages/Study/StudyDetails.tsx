@@ -67,80 +67,85 @@ const StudyDetails = () => {
             {isLoading ? (
                 <Loader />
             ) : studyGoal && studyGoal.studyTasks?.length ? (
-                <div className="overflow-x-auto rounded-md space-y-3">
+                <div className="space-y-3">
                     <AddStudyTaskModal
                         buttonText="Add Study Task"
                         studyGoalId={studyGoal._id}
                         addStudyTask={addStudyTask}
                         disabled={isAddManualLoading}
                     />
-                    <Table className="text-xs sm:text-base" hoverable>
-                        <TableHead>
-                            <TableRow>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Topic
-                                </TableHeadCell>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Priority
-                                </TableHeadCell>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Deadline
-                                </TableHeadCell>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Days
-                                </TableHeadCell>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Time Slot
-                                </TableHeadCell>
-                                <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                    Actions
-                                </TableHeadCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody className="divide-y divide-gray-200">
-                            {studyGoal.studyTasks.map((task) => (
-                                <TableRow
-                                    key={task._id}
-                                    className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                                >
-                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3 whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                                        {task.topic}
-                                    </TableCell>
-                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                        <Badge
-                                            className="w-fit px-2 py-1 rounded-xl"
-                                            color={
-                                                task.priority === 'high'
-                                                    ? 'failure'
-                                                    : task.priority === 'medium'
-                                                      ? 'warning'
-                                                      : 'success'
-                                            }
-                                        >
-                                            {capitalize(task.priority)}
-                                        </Badge>
-                                    </TableCell>
-                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                        {moment(task.deadline).format(
-                                            'Do MMM, YY',
-                                        )}
-                                    </TableCell>
-                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                        {task.days.join(', ')}
-                                    </TableCell>
-                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
-                                        {task.timeSlot}
-                                    </TableCell>
-                                    <TableCell className="px-2 py-2 sm:px-4 sm:py-3 flex items-center gap-1.5">
-                                        <EditStudyTaskModal studyTask={task} />
-                                        <DeleteStudyTaskModal
-                                            studyTask={task}
-                                        />
-                                    </TableCell>
+                    <div className="overflow-x-auto rounded-md">
+                        <Table className="text-xs sm:text-base" hoverable>
+                            <TableHead>
+                                <TableRow>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Topic
+                                    </TableHeadCell>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Priority
+                                    </TableHeadCell>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Deadline
+                                    </TableHeadCell>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Days
+                                    </TableHeadCell>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Time Slot
+                                    </TableHeadCell>
+                                    <TableHeadCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                        Actions
+                                    </TableHeadCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                            </TableHead>
+                            <TableBody className="divide-y divide-gray-200">
+                                {studyGoal.studyTasks.map((task) => (
+                                    <TableRow
+                                        key={task._id}
+                                        className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                                    >
+                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3 whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                                            {task.topic}
+                                        </TableCell>
+                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                            <Badge
+                                                className="w-fit px-2 py-1 rounded-xl"
+                                                color={
+                                                    task.priority === 'high'
+                                                        ? 'failure'
+                                                        : task.priority ===
+                                                            'medium'
+                                                          ? 'warning'
+                                                          : 'success'
+                                                }
+                                            >
+                                                {capitalize(task.priority)}
+                                            </Badge>
+                                        </TableCell>
+                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                            {moment(task.deadline).format(
+                                                'Do MMM, YY',
+                                            )}
+                                        </TableCell>
+                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                            {task.days.join(', ')}
+                                        </TableCell>
+                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3">
+                                            {task.timeSlot}
+                                        </TableCell>
+                                        <TableCell className="px-2 py-2 sm:px-4 sm:py-3 flex items-center gap-1.5">
+                                            <EditStudyTaskModal
+                                                studyTask={task}
+                                            />
+                                            <DeleteStudyTaskModal
+                                                studyTask={task}
+                                            />
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </div>
                 </div>
             ) : (
                 <div className="min-h-[40dvh] rounded-lg flex flex-col justify-center items-center text-center p-8">
