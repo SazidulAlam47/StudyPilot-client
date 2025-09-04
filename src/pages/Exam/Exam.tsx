@@ -20,8 +20,13 @@ const Exam = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const { data: exam, isError, isLoading } = useGetExamQuery(id);
-    const [validateAnswers] = useValidateAnswersMutation();
+    const {
+        data: exam,
+        isError,
+        isLoading: isExamLoading,
+    } = useGetExamQuery(id);
+    const [validateAnswers, { isLoading: isSubmitLoading }] =
+        useValidateAnswersMutation();
 
     const handleSubmit = async (data: FieldValues) => {
         let error = false;
@@ -109,7 +114,7 @@ const Exam = () => {
                 Challenge Your Knowledge: Take the Quiz!
             </TitleText>
 
-            {isLoading ? (
+            {isExamLoading ? (
                 <Loader />
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -158,6 +163,7 @@ const Exam = () => {
                                             type="submit"
                                             size="lg"
                                             className="w-32"
+                                            disabled={isSubmitLoading}
                                         >
                                             Submit
                                         </Button>

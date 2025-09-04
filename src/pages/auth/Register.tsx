@@ -23,8 +23,9 @@ import { useEffect } from 'react';
 
 const Register = () => {
     const navigate = useNavigate();
-    const [register] = useRegisterMutation();
-    const [loginWithEmail] = useLoginWithEmailMutation();
+    const [register, { isLoading: isRegisterLoading }] = useRegisterMutation();
+    const [loginWithEmail, { isLoading: isLoginLoading }] =
+        useLoginWithEmailMutation();
 
     const decodedUser = getUser();
 
@@ -95,7 +96,11 @@ const Register = () => {
                     />
                     <SInputPassword />
                     <SFileUpload label="Profile Photo (Optional)" />
-                    <Button type="submit" className="w-full">
+                    <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={isRegisterLoading || isLoginLoading}
+                    >
                         Register
                     </Button>
                 </SForm>

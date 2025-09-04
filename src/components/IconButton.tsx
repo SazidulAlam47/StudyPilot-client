@@ -19,7 +19,10 @@ const IconButton = ({
             onClick={onClick}
             className={cn(
                 'text-blue-600 hover:text-blue-800 transition-colors duration-200 cursor-pointer p-1.5 rounded-full hover:bg-gray-200',
-                className
+                className,
+                {
+                    'opacity-40': disabled,
+                },
             )}
             disabled={disabled}
         >

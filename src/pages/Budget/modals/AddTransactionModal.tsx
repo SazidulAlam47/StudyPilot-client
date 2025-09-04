@@ -19,7 +19,7 @@ import { useCreateTransactionMutation } from '../../../redux/api/budgetApi';
 const AddTransactionModal = () => {
     const [openModal, setOpenModal] = useState(false);
 
-    const [createTransaction] = useCreateTransactionMutation();
+    const [createTransaction, { isLoading }] = useCreateTransactionMutation();
 
     const handleCreateTransaction = async (data: FieldValues) => {
         setOpenModal(false);
@@ -40,7 +40,11 @@ const AddTransactionModal = () => {
 
     return (
         <>
-            <Button size="xs" onClick={() => setOpenModal(true)}>
+            <Button
+                size="xs"
+                onClick={() => setOpenModal(true)}
+                disabled={isLoading}
+            >
                 <HiOutlinePlusSm size={20} /> Add Transaction
             </Button>
             <Modal

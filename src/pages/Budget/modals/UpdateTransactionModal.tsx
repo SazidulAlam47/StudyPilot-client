@@ -24,7 +24,7 @@ const UpdateTransactionModal = ({
 }: UpdateTransactionModalProps) => {
     const [openModal, setOpenModal] = useState(false);
 
-    const [updateTransaction] = useUpdateTransactionMutation();
+    const [updateTransaction, { isLoading }] = useUpdateTransactionMutation();
 
     const handleUpdateTransaction = async (data: FieldValues) => {
         setOpenModal(false);
@@ -52,7 +52,7 @@ const UpdateTransactionModal = ({
 
     return (
         <>
-            <IconButton onClick={() => setOpenModal(true)}>
+            <IconButton onClick={() => setOpenModal(true)} disabled={isLoading}>
                 <MdOutlineEdit size={20} />
             </IconButton>
             <Modal

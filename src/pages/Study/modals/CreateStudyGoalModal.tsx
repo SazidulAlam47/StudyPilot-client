@@ -13,7 +13,7 @@ import { studyGoalSchema } from '../../../schemas/studyGoal.schema';
 const CreateStudyGoalModal = () => {
     const [openModal, setOpenModal] = useState(false);
 
-    const [createStudyGoal] = useCreateStudyGoalMutation();
+    const [createStudyGoal, { isLoading }] = useCreateStudyGoalMutation();
 
     const handleCreateStudyGoal = async (data: FieldValues) => {
         setOpenModal(false);
@@ -34,7 +34,11 @@ const CreateStudyGoalModal = () => {
 
     return (
         <>
-            <Button size="xs" onClick={() => setOpenModal(true)}>
+            <Button
+                size="xs"
+                onClick={() => setOpenModal(true)}
+                disabled={isLoading}
+            >
                 Create New Study Goal
             </Button>
             <Modal

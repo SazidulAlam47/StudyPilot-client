@@ -13,7 +13,7 @@ import { toast } from 'sonner';
 const ChangePass = () => {
     const navigate = useNavigate();
 
-    const [changePassword] = useChangePasswordMutation();
+    const [changePassword, { isLoading }] = useChangePasswordMutation();
 
     const handleResetPass = async (data: FieldValues) => {
         const toastId = toast.loading('Changing password...');
@@ -53,7 +53,11 @@ const ChangePass = () => {
                         label="New Password"
                         placeholder="Enter your new password"
                     />
-                    <Button type="submit" className="w-full">
+                    <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={isLoading}
+                    >
                         Change Password
                     </Button>
                 </SForm>

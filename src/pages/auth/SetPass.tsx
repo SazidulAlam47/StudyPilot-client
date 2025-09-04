@@ -13,7 +13,7 @@ import { toast } from 'sonner';
 const SetPass = () => {
     const navigate = useNavigate();
 
-    const [setPassword] = useSetPasswordMutation();
+    const [setPassword, { isLoading }] = useSetPasswordMutation();
 
     const handleResetPass = async (data: FieldValues) => {
         const toastId = toast.loading('Setting new password...');
@@ -53,7 +53,11 @@ const SetPass = () => {
                         label="Confirm New Password"
                         placeholder="Confirm your new password"
                     />
-                    <Button type="submit" className="w-full">
+                    <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={isLoading}
+                    >
                         Set Password
                     </Button>
                 </SForm>

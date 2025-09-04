@@ -1,5 +1,9 @@
 import { useNavigate, useParams } from 'react-router';
-import { useGetStudyGoalByIdQuery } from '../../redux/api/studyGoalApi';
+import {
+    useAddStudyTaskMutation,
+    useGenerateStudyTaskMutation,
+    useGetStudyGoalByIdQuery,
+} from '../../redux/api/studyGoalApi';
 import Loader from '../../components/Loader';
 import { useEffect } from 'react';
 import Container from '../../components/Container';
@@ -24,6 +28,11 @@ import GenerateStudyTaskModal from './modals/GenerateStudyTaskModal';
 const StudyDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+
+    const [addStudyTask, { isLoading: isAddManualLoading }] =
+        useAddStudyTaskMutation();
+    const [generateStudyTask, { isLoading: isGenerateLoading }] =
+        useGenerateStudyTaskMutation();
 
     const {
         data: studyGoal,
@@ -62,6 +71,8 @@ const StudyDetails = () => {
                     <AddStudyTaskModal
                         buttonText="Add Study Task"
                         studyGoalId={studyGoal._id}
+                        addStudyTask={addStudyTask}
+                        disabled={isAddManualLoading}
                     />
                     <Table className="text-xs sm:text-base" hoverable>
                         <TableHead>
@@ -149,9 +160,17 @@ const StudyDetails = () => {
                             <AddStudyTaskModal
                                 buttonText="Add Study Task Manually"
                                 studyGoalId={studyGoal._id}
+                                addStudyTask={addStudyTask}
+                                disabled={
+                                    isAddManualLoading || isGenerateLoading
+                                }
                             />
                             <GenerateStudyTaskModal
                                 studyGoalId={studyGoal._id}
+                                generateStudyTask={generateStudyTask}
+                                disabled={
+                                    isAddManualLoading || isGenerateLoading
+                                }
                             />
                         </div>
                     )}

@@ -20,7 +20,7 @@ import Container from '../../components/Container';
 
 const ExamInput = () => {
     const navigate = useNavigate();
-    const [createExam] = useCreateExamMutation();
+    const [createExam, { isLoading }] = useCreateExamMutation();
 
     const handleExamStart = async (data: FieldValues) => {
         const toastId = toast.loading('Generating Questions with AI...');
@@ -82,7 +82,11 @@ const ExamInput = () => {
                         label="Language"
                         options={languagesOptions}
                     />
-                    <Button type="submit" className="w-full">
+                    <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={isLoading}
+                    >
                         Start Quiz
                     </Button>
                 </SForm>

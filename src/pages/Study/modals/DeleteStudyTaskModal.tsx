@@ -15,7 +15,7 @@ type DeleteStudyTaskModalProps = {
 const DeleteStudyTaskModal = ({ studyTask }: DeleteStudyTaskModalProps) => {
     const [openModal, setOpenModal] = useState(false);
 
-    const [deleteStudyTask] = useDeleteStudyTaskMutation();
+    const [deleteStudyTask, { isLoading }] = useDeleteStudyTaskMutation();
 
     const handleDeleteTransaction = async () => {
         setOpenModal(false);
@@ -39,6 +39,7 @@ const DeleteStudyTaskModal = ({ studyTask }: DeleteStudyTaskModalProps) => {
             <IconButton
                 onClick={() => setOpenModal(true)}
                 className="text-red-600 hover:text-red-800"
+                disabled={isLoading}
             >
                 <MdOutlineDelete size={20} />
             </IconButton>

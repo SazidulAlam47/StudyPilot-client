@@ -17,7 +17,7 @@ const DeleteTransactionModal = ({
 }: DeleteTransactionModalProps) => {
     const [openModal, setOpenModal] = useState(false);
 
-    const [deleteTransaction] = useDeleteTransactionMutation();
+    const [deleteTransaction, { isLoading }] = useDeleteTransactionMutation();
 
     const handleDeleteTransaction = async () => {
         setOpenModal(false);
@@ -41,6 +41,7 @@ const DeleteTransactionModal = ({
             <IconButton
                 onClick={() => setOpenModal(true)}
                 className="text-red-600 hover:text-red-800"
+                disabled={isLoading}
             >
                 <MdOutlineDelete size={20} />
             </IconButton>

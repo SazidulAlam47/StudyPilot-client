@@ -20,7 +20,7 @@ type UpdateStudyGoalModalProps = {
 const UpdateStudyGoalModal = ({ studyGoal }: UpdateStudyGoalModalProps) => {
     const [openModal, setOpenModal] = useState(false);
 
-    const [updateStudyGoal] = useUpdateStudyGoalMutation();
+    const [updateStudyGoal, { isLoading }] = useUpdateStudyGoalMutation();
 
     const handleCreateStudyGoal = async (data: FieldValues) => {
         setOpenModal(false);
@@ -49,7 +49,7 @@ const UpdateStudyGoalModal = ({ studyGoal }: UpdateStudyGoalModalProps) => {
 
     return (
         <>
-            <IconButton onClick={() => setOpenModal(true)}>
+            <IconButton onClick={() => setOpenModal(true)} disabled={isLoading}>
                 <MdOutlineEdit size={20} />
             </IconButton>
             <Modal

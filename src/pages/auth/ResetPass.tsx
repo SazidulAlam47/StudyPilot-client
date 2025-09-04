@@ -15,7 +15,7 @@ const ResetPass = () => {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
-    const [resetPassword] = useResetPasswordMutation();
+    const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
     const id = searchParams.get('id');
     const token = searchParams.get('token');
@@ -71,7 +71,11 @@ const ResetPass = () => {
                         label="Confirm New Password"
                         placeholder="Confirm your new password"
                     />
-                    <Button type="submit" className="w-full">
+                    <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={isLoading}
+                    >
                         Reset Password
                     </Button>
                 </SForm>

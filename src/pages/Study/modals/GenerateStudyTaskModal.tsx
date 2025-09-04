@@ -5,20 +5,22 @@ import type { FieldValues } from 'react-hook-form';
 import SForm from '../../../components/form/SForm';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
-import { useGenerateStudyTaskMutation } from '../../../redux/api/studyGoalApi';
 import STextArea from '../../../components/form/STextArea';
 import { generateStudyGoalSchema } from '../../../schemas/studyGoal.schema';
+import { useGenerateStudyTaskMutation } from '../../../redux/api/studyGoalApi';
 
 type GenerateStudyTaskModalProps = {
     studyGoalId: string;
+    generateStudyTask: ReturnType<typeof useGenerateStudyTaskMutation>[0];
+    disabled?: boolean;
 };
 
 const GenerateStudyTaskModal = ({
     studyGoalId,
+    generateStudyTask,
+    disabled,
 }: GenerateStudyTaskModalProps) => {
     const [openModal, setOpenModal] = useState(false);
-
-    const [generateStudyTask] = useGenerateStudyTaskMutation();
 
     const handleCreateStudyGoal = async (data: FieldValues) => {
         setOpenModal(false);
@@ -39,7 +41,11 @@ const GenerateStudyTaskModal = ({
 
     return (
         <>
-            <Button onClick={() => setOpenModal(true)} size="xs">
+            <Button
+                onClick={() => setOpenModal(true)}
+                size="xs"
+                disabled={disabled}
+            >
                 Generate Study Task with AI
             </Button>
             <Modal

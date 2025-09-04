@@ -7,7 +7,6 @@ import SInput from '../../../components/form/SInput';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import SDatePicker from '../../../components/form/SDatePicker';
-import { useAddStudyTaskMutation } from '../../../redux/api/studyGoalApi';
 import { studyTaskSchema } from '../../../schemas/studyGoal.schema';
 import SSelect from '../../../components/form/SSelect';
 import {
@@ -16,19 +15,22 @@ import {
     priorityOptions,
 } from '../../../constants/studyGoal.constant';
 import SCheckBox from '../../../components/form/SCheckBox';
+import { useAddStudyTaskMutation } from '../../../redux/api/studyGoalApi';
 
 type AddTaskGoalModalProps = {
     studyGoalId: string;
     buttonText: string;
+    addStudyTask: ReturnType<typeof useAddStudyTaskMutation>[0];
+    disabled?: boolean;
 };
 
 const AddStudyTaskModal = ({
     studyGoalId,
     buttonText,
+    addStudyTask,
+    disabled,
 }: AddTaskGoalModalProps) => {
     const [openModal, setOpenModal] = useState(false);
-
-    const [addStudyTask] = useAddStudyTaskMutation();
 
     const handleCreateStudyGoal = async (data: FieldValues) => {
         setOpenModal(false);
@@ -49,7 +51,11 @@ const AddStudyTaskModal = ({
 
     return (
         <>
-            <Button size="xs" onClick={() => setOpenModal(true)}>
+            <Button
+                size="xs"
+                onClick={() => setOpenModal(true)}
+                disabled={disabled}
+            >
                 {buttonText}
             </Button>
             <Modal

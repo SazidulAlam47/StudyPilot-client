@@ -32,7 +32,8 @@ const arr = Array(10).fill(null);
 
 const ScheduleEdit = () => {
     const navigate = useNavigate();
-    const { data: schedule, isLoading } = useGetMyScheduleQuery(undefined);
+    const { data: schedule, isLoading: isScheduleLoading } =
+        useGetMyScheduleQuery(undefined);
 
     const [timeSlots, setTimeSlots] = useState<string[]>(
         schedule?.timeSlots || initialTimeSlots,
@@ -46,7 +47,8 @@ const ScheduleEdit = () => {
         setClasses(schedule?.classes || initialClasses);
     }, [schedule]);
 
-    const [createOrUpdateSchedule] = useCreateOrUpdateScheduleMutation();
+    const [createOrUpdateSchedule, { isLoading: isUpdateLoading }] =
+        useCreateOrUpdateScheduleMutation();
 
     const handleSaveSchedule = async (data: FieldValues) => {
         const newTimeSlots = arr.map((_, index) => data[`timeSlot_${index}`]);
@@ -103,7 +105,7 @@ const ScheduleEdit = () => {
                 subTitle="Update your classes and manage your weekly schedule"
                 className="mb-8"
             />
-            {isLoading ? (
+            {isScheduleLoading ? (
                 <Loader />
             ) : (
                 <SForm
@@ -162,7 +164,12 @@ const ScheduleEdit = () => {
                         </Table>
                     </div>
                     <div className="flex justify-center">
-                        <Button type="submit" size="lg" className="px-8">
+                        <Button
+                            type="submit"
+                            size="lg"
+                            className="px-8"
+                            disabled={isUpdateLoading}
+                        >
                             Save Schedule
                         </Button>
                     </div>

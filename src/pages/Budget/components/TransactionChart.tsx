@@ -11,7 +11,6 @@ const TransactionChart = ({ stats }: TransactionChartProps) => {
         (stats?.currentMonthInflow || 0) > 0 ||
         (stats?.currentMonthOutflow || 0) > 0;
 
-    // If no data, show a placeholder
     if (!hasData) {
         return (
             <div

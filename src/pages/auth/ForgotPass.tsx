@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 
 const ForgotPass = () => {
     const navigate = useNavigate();
-    const [forgotPassword] = useForgotPasswordMutation();
+    const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
 
     const decodedUser = getUser();
 
@@ -62,7 +62,11 @@ const ForgotPass = () => {
                         label="Email"
                         placeholder="Enter your email"
                     />
-                    <Button type="submit" className="w-full">
+                    <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={isLoading}
+                    >
                         Send Reset Email
                     </Button>
                 </SForm>

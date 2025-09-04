@@ -26,7 +26,7 @@ type EditTaskGoalModalProps = {
 const EditStudyTaskModal = ({ studyTask }: EditTaskGoalModalProps) => {
     const [openModal, setOpenModal] = useState(false);
 
-    const [editStudyTask] = useEditStudyTaskMutation();
+    const [editStudyTask, { isLoading }] = useEditStudyTaskMutation();
 
     const handleCreateStudyGoal = async (data: FieldValues) => {
         setOpenModal(false);
@@ -52,7 +52,7 @@ const EditStudyTaskModal = ({ studyTask }: EditTaskGoalModalProps) => {
 
     return (
         <>
-            <IconButton onClick={() => setOpenModal(true)}>
+            <IconButton onClick={() => setOpenModal(true)} disabled={isLoading}>
                 <MdOutlineEdit size={20} />
             </IconButton>
             <Modal

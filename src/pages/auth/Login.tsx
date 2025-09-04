@@ -24,8 +24,10 @@ import { useEffect } from 'react';
 const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [loginWithEmail] = useLoginWithEmailMutation();
-    const [loginWithGoogle] = useLoginWithGoogleMutation();
+    const [loginWithEmail, { isLoading: isEmailLoading }] =
+        useLoginWithEmailMutation();
+    const [loginWithGoogle, { isLoading: isGoogleLoading }] =
+        useLoginWithGoogleMutation();
 
     const decodedUser = getUser();
 
@@ -108,7 +110,11 @@ const Login = () => {
                         placeholder="Enter your email"
                     />
                     <SInputPassword />
-                    <Button type="submit" className="w-full">
+                    <Button
+                        type="submit"
+                        className="w-full"
+                        disabled={isEmailLoading || isGoogleLoading}
+                    >
                         Login
                     </Button>
                 </SForm>
@@ -125,6 +131,7 @@ const Login = () => {
                         onClick={handleGoogleLogin}
                         color="light"
                         className="w-full border border-[#3c83f6] text-[#3c83f6] mt-1"
+                        disabled={isEmailLoading || isGoogleLoading}
                     >
                         <img src={googleLogo} alt="G" className="size-4 mr-2" />
                         Sign in with Google
