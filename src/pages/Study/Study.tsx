@@ -21,8 +21,6 @@ import UpdateStudyGoalModal from './modals/UpdateStudyGoalModal';
 const Study = () => {
     const { data: studyGoals, isLoading } = useGetAllStudyGoalQuery(undefined);
 
-    if (isLoading) return <Loader />;
-
     return (
         <Container className="min-h-[calc(100dvh-198px)] my-10">
             <title>StudyPilot - Study Planner</title>
@@ -31,7 +29,9 @@ const Study = () => {
                 subTitle="Manage your study goals and track your learning progress"
                 className="mb-8"
             />
-            {studyGoals?.length ? (
+            {isLoading ? (
+                <Loader />
+            ) : studyGoals?.length ? (
                 <div className="overflow-x-auto rounded-md space-y-3">
                     <CreateStudyGoalModal />
                     <Table className="text-xs sm:text-base" hoverable>

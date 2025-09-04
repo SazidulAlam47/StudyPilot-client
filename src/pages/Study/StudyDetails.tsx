@@ -37,10 +37,6 @@ const StudyDetails = () => {
         }
     }, [isError, navigate]);
 
-    if (isLoading) {
-        return <Loader />;
-    }
-
     return (
         <Container className="min-h-[calc(100dvh-198px)] my-10">
             <title>StudyPilot - Study Tasks</title>
@@ -59,7 +55,9 @@ const StudyDetails = () => {
                 }
                 className="mb-8"
             />
-            {studyGoal && studyGoal.studyTasks?.length ? (
+            {isLoading ? (
+                <Loader />
+            ) : studyGoal && studyGoal.studyTasks?.length ? (
                 <div className="overflow-x-auto rounded-md space-y-3">
                     <AddStudyTaskModal
                         buttonText="Add Study Task"

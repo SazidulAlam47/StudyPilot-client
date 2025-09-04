@@ -95,10 +95,6 @@ const ScheduleEdit = () => {
         return defaultValues;
     };
 
-    if (isLoading) {
-        return <Loader />;
-    }
-
     return (
         <Container className="min-h-[calc(100dvh-198px)] my-10">
             <title>StudyPilot - Edit Schedule</title>
@@ -107,64 +103,71 @@ const ScheduleEdit = () => {
                 subTitle="Update your classes and manage your weekly schedule"
                 className="mb-8"
             />
-            <SForm
-                onSubmit={handleSaveSchedule}
-                defaultValues={getFormValues(initialTimeSlots, initialClasses)}
-                values={getFormValues(timeSlots, classes)}
-                className="space-y-6"
-            >
-                <div className="overflow-x-auto rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-                    <Table className="text-xs sm:text-sm md:text-base">
-                        <TableHead>
-                            <TableRow>
-                                <TableHeadCell className="whitespace-nowrap">
-                                    Day
-                                </TableHeadCell>
-                                {arr.map((_, index) => (
-                                    <TableHeadCell
-                                        key={index}
-                                        className="whitespace-nowrap min-w-[150px] p-2"
-                                    >
-                                        <SInput
-                                            name={`timeSlot_${index}`}
-                                            placeholder="HH:MM-HH:MM"
-                                            className="min-w-0"
-                                        />
+            {isLoading ? (
+                <Loader />
+            ) : (
+                <SForm
+                    onSubmit={handleSaveSchedule}
+                    defaultValues={getFormValues(
+                        initialTimeSlots,
+                        initialClasses,
+                    )}
+                    values={getFormValues(timeSlots, classes)}
+                    className="space-y-6"
+                >
+                    <div className="overflow-x-auto rounded-md border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                        <Table className="text-xs sm:text-sm md:text-base">
+                            <TableHead>
+                                <TableRow>
+                                    <TableHeadCell className="whitespace-nowrap">
+                                        Day
                                     </TableHeadCell>
-                                ))}
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {days.map((day) => (
-                                <TableRow
-                                    key={day}
-                                    className="bg-white dark:border-gray-700 dark:bg-gray-800"
-                                >
-                                    <TableCell className="font-medium text-gray-900 dark:text-white whitespace-nowrap">
-                                        {day}
-                                    </TableCell>
                                     {arr.map((_, index) => (
-                                        <TableCell
+                                        <TableHeadCell
                                             key={index}
-                                            className="align-top p-2"
+                                            className="whitespace-nowrap min-w-[150px] p-2"
                                         >
                                             <SInput
-                                                name={`${day}_${index}`}
+                                                name={`timeSlot_${index}`}
+                                                placeholder="HH:MM-HH:MM"
                                                 className="min-w-0"
                                             />
-                                        </TableCell>
+                                        </TableHeadCell>
                                     ))}
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </div>
-                <div className="flex justify-center">
-                    <Button type="submit" size="lg" className="px-8">
-                        Save Schedule
-                    </Button>
-                </div>
-            </SForm>
+                            </TableHead>
+                            <TableBody>
+                                {days.map((day) => (
+                                    <TableRow
+                                        key={day}
+                                        className="bg-white dark:border-gray-700 dark:bg-gray-800"
+                                    >
+                                        <TableCell className="font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                                            {day}
+                                        </TableCell>
+                                        {arr.map((_, index) => (
+                                            <TableCell
+                                                key={index}
+                                                className="align-top p-2"
+                                            >
+                                                <SInput
+                                                    name={`${day}_${index}`}
+                                                    className="min-w-0"
+                                                />
+                                            </TableCell>
+                                        ))}
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </div>
+                    <div className="flex justify-center">
+                        <Button type="submit" size="lg" className="px-8">
+                            Save Schedule
+                        </Button>
+                    </div>
+                </SForm>
+            )}
         </Container>
     );
 };

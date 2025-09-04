@@ -9,8 +9,8 @@ const Loader = ({ className }: LoaderProps) => {
     return (
         <div
             className={cn(
-                'min-h-[calc(100dvh-198px)]  flex justify-center items-center',
-                className
+                'min-h-[calc(100dvh-300px)]  flex justify-center items-center',
+                className,
             )}
         >
             <Spinner size="xl" />

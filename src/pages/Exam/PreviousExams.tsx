@@ -18,8 +18,6 @@ import capitalize from '../../utils/capitalize';
 const PreviousExams = () => {
     const { data: exams, isLoading } = useGetPreviousExamsQuery(undefined);
 
-    if (isLoading) return <Loader />;
-
     return (
         <Container className="min-h-[calc(100dvh-198px)]  my-10">
             <title>StudyPilot - Previous Quiz</title>
@@ -28,7 +26,9 @@ const PreviousExams = () => {
                 subTitle="Review your latest exam scores and track your progress over time"
                 className="mb-8"
             />
-            {exams?.length ? (
+            {isLoading ? (
+                <Loader />
+            ) : exams?.length ? (
                 <div className="overflow-x-auto rounded-md">
                     <Table className="text-xs sm:text-base" hoverable>
                         <TableHead>

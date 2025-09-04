@@ -6,9 +6,7 @@ Built with **Vite**, **Redux Toolkit + RTK Query**, **React Hook Form + Zod**, *
 
 <!-- ##  Presentation Video
 
-Add a 5–10 minute walkthrough: architecture overview → feature demos → unique feature explanation.
-
-Placeholder: https://your-video-link.example.com -->
+Presentation Video: https://your-video-link.example.com -->
 
 ## Overview
 

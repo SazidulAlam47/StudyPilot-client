@@ -24,25 +24,17 @@ const TransactionHistory = () => {
     const { data: transactions, isLoading } =
         useGetMyTransactionsQuery(undefined);
 
-    if (isLoading)
-        return (
-            <div className="md:col-span-2 my-10 space-y-3">
-                <TitleText className="font-bold text-2xl sm:font-bold sm:text-3xl">
-                    Transaction History
-                </TitleText>
-                <Loader className="min-h-[40dvh]" />
-            </div>
-        );
-
     return (
         <Container className="md:col-span-2 my-10 space-y-3">
             <TitleText className="font-bold text-2xl sm:font-bold sm:text-3xl">
                 Transaction History
             </TitleText>
-            {transactions?.length ? <AddTransactionModal /> : null}
 
-            {transactions?.length ? (
-                <div className="overflow-x-auto rounded-md">
+            {isLoading ? (
+                <Loader className="min-h-[40dvh]" />
+            ) : transactions?.length ? (
+                <div className="overflow-x-auto rounded-md space-y-3">
+                    <AddTransactionModal />
                     <Table className="text-xs sm:text-base" hoverable>
                         <TableHead>
                             <TableRow>

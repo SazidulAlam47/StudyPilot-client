@@ -96,10 +96,6 @@ const Exam = () => {
         }
     }, [isError, navigate]);
 
-    if (isLoading) {
-        return <Loader />;
-    }
-
     const defaultValues: Record<number, string> = {};
 
     exam?.submittedAnswers?.forEach((answer, index) => {
@@ -113,116 +109,126 @@ const Exam = () => {
                 Challenge Your Knowledge: Take the Quiz!
             </TitleText>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <Card className="md:col-span-2 p-5">
-                    <SForm
-                        onSubmit={handleSubmit}
-                        defaultValues={defaultValues}
-                    >
-                        <div className="space-y-8">
-                            {exam?.questions.map((question, index) => (
-                                <div key={index} className="space-y-2">
-                                    <SRadio
-                                        name={index.toString()}
-                                        label={`${index + 1}. ` + question.text}
-                                        options={question.options}
-                                        disabled={
-                                            !!exam.submittedAnswers?.length
-                                        }
-                                        selectedIndex={
-                                            exam?.submittedAnswers?.[index]
-                                        }
-                                        correctAnswer={question.correctAnswer}
-                                    />
-                                    {question?.correctAnswer?.toString() ? (
-                                        <p className="mt-3">
-                                            <span className="font-bold">
-                                                Correct Answer:{' '}
-                                            </span>
-                                            {
-                                                question.options[
-                                                    question.correctAnswer
-                                                ]
+            {isLoading ? (
+                <Loader />
+            ) : (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <Card className="md:col-span-2 p-5">
+                        <SForm
+                            onSubmit={handleSubmit}
+                            defaultValues={defaultValues}
+                        >
+                            <div className="space-y-8">
+                                {exam?.questions.map((question, index) => (
+                                    <div key={index} className="space-y-2">
+                                        <SRadio
+                                            name={index.toString()}
+                                            label={
+                                                `${index + 1}. ` + question.text
                                             }
-                                        </p>
-                                    ) : null}
-                                </div>
-                            ))}
+                                            options={question.options}
+                                            disabled={
+                                                !!exam.submittedAnswers?.length
+                                            }
+                                            selectedIndex={
+                                                exam?.submittedAnswers?.[index]
+                                            }
+                                            correctAnswer={
+                                                question.correctAnswer
+                                            }
+                                        />
+                                        {question?.correctAnswer?.toString() ? (
+                                            <p className="mt-3">
+                                                <span className="font-bold">
+                                                    Correct Answer:{' '}
+                                                </span>
+                                                {
+                                                    question.options[
+                                                        question.correctAnswer
+                                                    ]
+                                                }
+                                            </p>
+                                        ) : null}
+                                    </div>
+                                ))}
 
-                            {exam?.submittedAnswers?.length ? null : (
-                                <div className="flex justify-end">
-                                    <Button
-                                        type="submit"
-                                        size="lg"
-                                        className="w-32"
-                                    >
-                                        Submit
-                                    </Button>
-                                </div>
-                            )}
-                        </div>
-                    </SForm>
-                </Card>
+                                {exam?.submittedAnswers?.length ? null : (
+                                    <div className="flex justify-end">
+                                        <Button
+                                            type="submit"
+                                            size="lg"
+                                            className="w-32"
+                                        >
+                                            Submit
+                                        </Button>
+                                    </div>
+                                )}
+                            </div>
+                        </SForm>
+                    </Card>
 
-                <Card className="sticky top-24 bg-white shadow-lg rounded-lg p-6 h-fit">
-                    <h2 className="text-xl font-bold mb-6 border-b border-gray-200 pb-3">
-                        Exam Summary
-                    </h2>
+                    <Card className="sticky top-24 bg-white shadow-lg rounded-lg p-6 h-fit">
+                        <h2 className="text-xl font-bold mb-6 border-b border-gray-200 pb-3">
+                            Exam Summary
+                        </h2>
 
-                    <div className="space-y-4 text-gray-700">
-                        <div>
-                            <span className="font-semibold">Topic:</span>{' '}
-                            {exam?.topic}
+                        <div className="space-y-4 text-gray-700">
+                            <div>
+                                <span className="font-semibold">Topic:</span>{' '}
+                                {exam?.topic}
+                            </div>
+                            <div>
+                                <span className="font-semibold">
+                                    Difficulty:
+                                </span>{' '}
+                                {capitalize(exam?.difficulty || '')}
+                            </div>
+                            <div>
+                                <span className="font-semibold">Language:</span>{' '}
+                                {capitalize(exam?.language || '')}
+                            </div>
+                            <div>
+                                <span className="font-semibold">Status:</span>{' '}
+                                {exam?.submittedAnswers?.length ? (
+                                    <span className="text-green-600 font-semibold">
+                                        Completed
+                                    </span>
+                                ) : (
+                                    <span className="text-yellow-600 font-semibold">
+                                        In Progress
+                                    </span>
+                                )}
+                            </div>
+                            <div>
+                                <span className="font-semibold">
+                                    Number of Questions:
+                                </span>{' '}
+                                {exam?.totalQuestions}
+                            </div>
+                            <div>
+                                <span className="font-semibold">
+                                    Total Correct Answers:
+                                </span>{' '}
+                                {exam?.correctAnswers ?? (
+                                    <span className="text-gray-400 italic">
+                                        Pending
+                                    </span>
+                                )}
+                            </div>
+                            <div>
+                                <span className="font-semibold">Score:</span>{' '}
+                                {exam?.correctAnswers ? (
+                                    <span>{exam.score + '%'}</span>
+                                ) : (
+                                    <span className="text-gray-400 italic">
+                                        Pending
+                                    </span>
+                                )}
+                            </div>
                         </div>
-                        <div>
-                            <span className="font-semibold">Difficulty:</span>{' '}
-                            {capitalize(exam?.difficulty || '')}
-                        </div>
-                        <div>
-                            <span className="font-semibold">Language:</span>{' '}
-                            {capitalize(exam?.language || '')}
-                        </div>
-                        <div>
-                            <span className="font-semibold">Status:</span>{' '}
-                            {exam?.submittedAnswers?.length ? (
-                                <span className="text-green-600 font-semibold">
-                                    Completed
-                                </span>
-                            ) : (
-                                <span className="text-yellow-600 font-semibold">
-                                    In Progress
-                                </span>
-                            )}
-                        </div>
-                        <div>
-                            <span className="font-semibold">
-                                Number of Questions:
-                            </span>{' '}
-                            {exam?.totalQuestions}
-                        </div>
-                        <div>
-                            <span className="font-semibold">
-                                Total Correct Answers:
-                            </span>{' '}
-                            {exam?.correctAnswers ?? (
-                                <span className="text-gray-400 italic">
-                                    Pending
-                                </span>
-                            )}
-                        </div>
-                        <div>
-                            <span className="font-semibold">Score:</span>{' '}
-                            {exam?.correctAnswers ? (
-                                <span>{exam.score + '%'}</span>
-                            ) : (
-                                <span className="text-gray-400 italic">
-                                    Pending
-                                </span>
-                            )}
-                        </div>
-                    </div>
-                </Card>
-            </div>
+                    </Card>
+                </div>
+            )}
         </Container>
     );
 };
