@@ -42,6 +42,8 @@ const Login = () => {
             const userInfo = await googleLogin();
             const idToken = await userInfo.user.getIdToken();
 
+            const toastId = toast.loading('Logging in...');
+
             try {
                 const res = await loginWithGoogle({ idToken }).unwrap();
 
@@ -53,11 +55,12 @@ const Login = () => {
                     } else {
                         navigate('/');
                     }
-                    toast.success('Login successful!');
+                    toast.success('Login successful!', { id: toastId });
                 }
             } catch (error: any) {
                 toast.error(
                     error.message || error.data || 'Something went wrong',
+                    { id: toastId },
                 );
             }
         } catch (error: any) {
