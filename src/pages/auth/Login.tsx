@@ -29,13 +29,13 @@ const Login = () => {
     const [loginWithGoogle, { isLoading: isGoogleLoading }] =
         useLoginWithGoogleMutation();
 
-    const decodedUser = getUser();
+    const user = getUser();
 
     useEffect(() => {
-        if (decodedUser) {
+        if (user && !location.state) {
             navigate('/');
         }
-    }, [decodedUser, navigate]);
+    }, [user, navigate, location.state]);
 
     const handleGoogleLogin = async () => {
         try {
