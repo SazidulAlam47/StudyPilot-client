@@ -70,7 +70,6 @@ const Login = () => {
 
         try {
             const res = await loginWithEmail(data).unwrap();
-
             const token = res.accessToken;
             if (token) {
                 setToLocalStorage(authKey, token);

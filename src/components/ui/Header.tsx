@@ -18,14 +18,9 @@ import { getUser, userLogout } from '../../utils/user';
 import { toast } from 'sonner';
 import { useState } from 'react';
 import { cn } from '../../utils/cn';
-import { useGetMeQuery } from '../../redux/api/user.api';
-import { useAppDispatch } from '../../redux/hooks';
-import { baseApi } from '../../redux/api/baseApi';
 
 const Header = () => {
-    const { data: user } = useGetMeQuery(undefined);
-    const dispatch = useAppDispatch();
-    const decodedUser = getUser();
+    const user = getUser();
 
     const [, forceUpdate] = useState({});
     const location = useLocation();
@@ -37,7 +32,6 @@ const Header = () => {
             await userLogout();
             toast.success('Logout successful!', { id: toastId });
             forceUpdate({}); // Force re-render
-            dispatch(baseApi.util.invalidateTags(['me']));
             navigate('/');
         } catch (error: any) {
             toast.error(error.message || error.data || 'Something went wrong', {
@@ -58,7 +52,7 @@ const Header = () => {
                         />
                     </Link>
                     <div className="flex md:order-2 gap-2 items-center">
-                        {user && decodedUser ? (
+                        {user && user ? (
                             <Dropdown
                                 arrowIcon={false}
                                 inline
@@ -116,7 +110,7 @@ const Header = () => {
                                         'text-primary-700':
                                             location.pathname ===
                                             headerLink.path,
-                                    }
+                                    },
                                 )}
                             >
                                 {headerLink.title}

@@ -16,11 +16,13 @@ import ScheduleEdit from '../pages/Schedule/ScheduleEdit';
 import ChangePass from '../pages/auth/ChangePass';
 import SetPass from '../pages/auth/SetPass';
 import StudyDetails from '../pages/Study/StudyDetails';
+import ErrorPage from '../pages/ErrorPage/ErrorPage';
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 index: true,
