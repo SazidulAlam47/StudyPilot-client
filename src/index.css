@@ -4,4 +4,4 @@
 @source "../.flowbite-react/class-list.json";
 
 /* for disable dark mode */
-@config '../tailwind.config.js';
+@config '../tailwind.config.ts';

@@ -21,9 +21,7 @@ const Container = forwardRef<HTMLDivElement, ContainerProps>(
                 {children}
             </Component>
         );
-    }
+    },
 );
-
-Container.displayName = 'Container'; // Good practice for debugging with React DevTools
 
 export default Container;
