@@ -24,7 +24,7 @@ const SFileUpload = ({ label, className }: SFileUploadProps) => {
                 {label}
             </Label>
             <FileInput
-                id="file"
+                id={name}
                 name={name}
                 onChange={(e) => {
                     const file = e.target.files?.[0];

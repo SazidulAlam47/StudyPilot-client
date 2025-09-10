@@ -15,7 +15,7 @@ const ErrorPage = () => {
                     <img
                         src={notFoundImage}
                         alt="404 - Not found"
-                        className="mx-auto max-w-md"
+                        className="mx-auto sm:max-w-md"
                     />
                     <NormalText>
                         We couldn't find the page you're looking for.
